@@ -14,6 +14,7 @@ internal sealed class MainForm : Form
     private readonly TextBox _searchBox = new();
     private readonly ComboBox _categoryBox = new();
     private readonly DataGridView _grid = new();
+    private readonly SplitContainer _contentSplit = new();
     private readonly Label _detailTitle = new();
     private readonly Label _detailMeta = new();
     private readonly TextBox _examplesBox = new();
@@ -39,6 +40,7 @@ internal sealed class MainForm : Form
         BuildInterface();
         Load += (_, _) =>
         {
+            ConfigureInitialSplit();
             PopulateCategories();
             RefreshGrid();
         };
@@ -145,23 +147,33 @@ internal sealed class MainForm : Form
 
     private Control BuildContent()
     {
-        var split = new SplitContainer
-        {
-            Dock = DockStyle.Fill,
-            Orientation = Orientation.Vertical,
-            SplitterDistance = 665,
-            SplitterWidth = 8,
-            Panel1MinSize = 520,
-            Panel2MinSize = 300,
-            BackColor = BackColor
-        };
-        split.Panel1.Padding = new Padding(0, 0, 4, 0);
-        split.Panel2.Padding = new Padding(4, 0, 0, 0);
+        _contentSplit.Dock = DockStyle.Fill;
+        _contentSplit.Orientation = Orientation.Vertical;
+        _contentSplit.SplitterWidth = 8;
+        _contentSplit.BackColor = BackColor;
+        _contentSplit.Panel1.Padding = new Padding(0, 0, 4, 0);
+        _contentSplit.Panel2.Padding = new Padding(4, 0, 0, 0);
 
         ConfigureGrid();
-        split.Panel1.Controls.Add(_grid);
-        split.Panel2.Controls.Add(BuildDetails());
-        return split;
+        _contentSplit.Panel1.Controls.Add(_grid);
+        _contentSplit.Panel2.Controls.Add(BuildDetails());
+        return _contentSplit;
+    }
+
+    private void ConfigureInitialSplit()
+    {
+        const int leftMinimum = 520;
+        const int rightMinimum = 300;
+        var available = _contentSplit.ClientSize.Width - _contentSplit.SplitterWidth;
+        if (available < leftMinimum + rightMinimum)
+        {
+            return;
+        }
+
+        var desired = Math.Clamp((int)(available * 0.62), leftMinimum, available - rightMinimum);
+        _contentSplit.SplitterDistance = desired;
+        _contentSplit.Panel1MinSize = leftMinimum;
+        _contentSplit.Panel2MinSize = rightMinimum;
     }
 
     private void ConfigureGrid()
