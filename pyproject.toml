@@ -1,0 +1,11 @@
+[project]
+name = "endnote-x9-chinese-academic-styles"
+version = "0.3.0"
+description = "Chinese academic footnote styles and a native Windows application for EndNote X9"
+requires-python = ">=3.10"
+authors = [{ name = "Clockworkhg", email = "hershelgao@gmail.com" }]
+license = { text = "Multi-license: MIT and CC-BY-SA-3.0" }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

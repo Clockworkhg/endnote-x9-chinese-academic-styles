@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+build/
+dist/
+bin/
+obj/
+artifacts/
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,873 @@
+﻿TY  - BOOK
+ID  - T01
+KW  - CSS2026:T01
+AU  - 陈明
+TI  - 单一作者图书
+PY  - 2021
+CY  - 北京
+PB  - 人民出版社
+LA  - Chinese
+N1  - SCENE=中文专著—单一作者
+N1  - SUGGESTED_CITED_PAGES=8
+ER  - 
+
+TY  - BOOK
+ID  - T02
+KW  - CSS2026:T02
+AU  - 马克思
+AU  - 恩格斯
+TI  - 两位作者图书
+PY  - 2018
+CY  - 北京
+PB  - 人民出版社
+LA  - Chinese
+N1  - SCENE=中文专著—两位作者
+N1  - SUGGESTED_CITED_PAGES=42–45
+ER  - 
+
+TY  - BOOK
+ID  - T03
+KW  - CSS2026:T03
+AU  - 罗尔斯
+TI  - 正义论
+PY  - 2009
+CY  - 北京
+PB  - 中国社会科学出版社
+LA  - Chinese
+N1  - SCENE=中文译著
+N1  - SUGGESTED_CITED_PAGES=55
+N1  - TRANSLATOR=何怀宏
+ER  - 
+
+TY  - BOOK
+ID  - T04
+KW  - CSS2026:T04
+AU  - 赵一
+AU  - 钱二
+AU  - 孙三
+TI  - 三位作者图书
+PY  - 2019
+CY  - 上海
+PB  - 复旦大学出版社
+LA  - Chinese
+N1  - SCENE=中文著作—三位作者
+N1  - SUGGESTED_CITED_PAGES=11
+ER  - 
+
+TY  - BOOK
+ID  - T05
+KW  - CSS2026:T05
+AU  - 赵一
+AU  - 钱二
+AU  - 孙三
+AU  - 李四
+TI  - 四位作者截断测试
+PY  - 2023
+CY  - 北京
+PB  - 北京大学出版社
+LA  - Chinese
+N1  - SCENE=中文著作—四位作者
+N1  - SUGGESTED_CITED_PAGES=20
+ER  - 
+
+TY  - BOOK
+ID  - T06
+KW  - CSS2026:T06
+AU  - 中国社会科学院政治学研究所,
+TI  - 机构作者年度研究
+PY  - 2024
+CY  - 北京
+PB  - 社会科学文献出版社
+LA  - Chinese
+N1  - SCENE=中文著作—机构作者
+N1  - SUGGESTED_CITED_PAGES=12
+ER  - 
+
+TY  - BOOK
+ID  - T07
+KW  - CSS2026:T07
+TI  - 无作者图书
+PY  - 2017
+CY  - 北京
+PB  - 中华书局
+LA  - Chinese
+N1  - SCENE=中文著作—无作者
+N1  - SUGGESTED_CITED_PAGES=9
+ER  - 
+
+TY  - BOOK
+ID  - T08
+KW  - CSS2026:T08
+TI  - 马克思恩格斯全集
+PY  - 2002
+VL  - 3
+CY  - 北京
+PB  - 人民出版社
+LA  - Chinese
+N1  - SCENE=中文著作—卷次
+N1  - SUGGESTED_CITED_PAGES=209
+ER  - 
+
+TY  - BOOK
+ID  - T09
+KW  - CSS2026:T09
+AU  - 王强
+TI  - 政治学概论
+PY  - 2022
+CY  - 北京
+PB  - 高等教育出版社
+ET  - 2
+LA  - Chinese
+N1  - SCENE=中文著作—版次
+N1  - SUGGESTED_CITED_PAGES=30
+ER  - 
+
+TY  - BOOK
+ID  - T10
+KW  - CSS2026:T10
+AU  - 吴六
+TI  - 缺少出版地的图书
+PY  - 2017
+PB  - 中华书局
+LA  - Chinese
+N1  - SCENE=中文著作—缺出版地
+N1  - SUGGESTED_CITED_PAGES=9
+ER  - 
+
+TY  - BOOK
+ID  - T11
+KW  - CSS2026:T11
+AU  - 郑七
+TI  - 缺少出版社的图书
+PY  - 2016
+CY  - 南京
+LA  - Chinese
+N1  - SCENE=中文著作—缺出版社
+N1  - SUGGESTED_CITED_PAGES=18
+ER  - 
+
+TY  - BOOK
+ID  - T12
+KW  - CSS2026:T12
+AU  - 周八
+TI  - 分散页码测试
+PY  - 2020
+CY  - 广州
+PB  - 中山大学出版社
+LA  - Chinese
+N1  - SCENE=中文著作—分散页码
+N1  - SUGGESTED_CITED_PAGES=55、88
+ER  - 
+
+TY  - JOUR
+ID  - T13
+KW  - CSS2026:T13
+AU  - 韩庆祥
+TI  - 21世纪马克思主义的基础性问题
+PY  - 2022
+JF  - 中国社会科学
+IS  - 4
+LA  - Chinese
+N1  - SCENE=中文期刊—年期
+N1  - SUGGESTED_CITED_PAGES=10
+ER  - 
+
+TY  - JOUR
+ID  - T14
+KW  - CSS2026:T14
+AU  - 张三
+AU  - 李四
+TI  - 数字时代的公共治理
+PY  - 2025
+JF  - 中国行政管理
+IS  - 3
+LA  - Chinese
+N1  - SCENE=中文期刊—两位作者
+N1  - SUGGESTED_CITED_PAGES=12–13
+ER  - 
+
+TY  - JOUR
+ID  - T15
+KW  - CSS2026:T15
+AU  - 甲一
+AU  - 乙二
+AU  - 丙三
+TI  - 三位作者期刊论文
+PY  - 2023
+JF  - 公共管理学报
+IS  - 2
+LA  - Chinese
+N1  - SCENE=中文期刊—三位作者
+N1  - SUGGESTED_CITED_PAGES=75
+ER  - 
+
+TY  - JOUR
+ID  - T16
+KW  - CSS2026:T16
+AU  - 甲一
+AU  - 乙二
+AU  - 丙三
+AU  - 丁四
+TI  - 四位作者期刊论文
+PY  - 2023
+JF  - 政治学研究
+IS  - 6
+LA  - Chinese
+N1  - SCENE=中文期刊—四位作者
+N1  - SUGGESTED_CITED_PAGES=75
+ER  - 
+
+TY  - JOUR
+ID  - T17
+KW  - CSS2026:T17
+AU  - 林九
+TI  - 卷期齐全的期刊论文
+PY  - 2024
+JF  - 学术月刊
+VL  - 56
+IS  - 5
+LA  - Chinese
+N1  - SCENE=中文期刊—卷期
+N1  - SUGGESTED_CITED_PAGES=35
+ER  - 
+
+TY  - JOUR
+ID  - T18
+KW  - CSS2026:T18
+AU  - 李初黎
+TI  - 早期期刊日期测试
+PY  - 1937
+JF  - 解放
+VL  - 1
+IS  - 24
+DA  - 1937年11月20日
+LA  - Chinese
+N1  - SCENE=中文期刊—完整日期
+N1  - SUGGESTED_CITED_PAGES=
+ER  - 
+
+TY  - JOUR
+ID  - T19
+KW  - CSS2026:T19
+AU  - 路易斯·格雷克
+TI  - 论德国刑法教义学的方法
+PY  - 2025
+JF  - 法治现代化研究
+IS  - 1
+LA  - Chinese
+N1  - SCENE=中文期刊—译文
+N1  - SUGGESTED_CITED_PAGES=22
+N1  - TRANSLATOR=郑力凡
+ER  - 
+
+TY  - JOUR
+ID  - T20
+KW  - CSS2026:T20
+AU  - 董一沙
+TI  - 回忆父亲董希文
+PY  - 2001
+JF  - 传记文学（北京）
+IS  - 3
+LA  - Chinese
+N1  - SCENE=中文期刊—同名异地
+N1  - SUGGESTED_CITED_PAGES=18
+ER  - 
+
+TY  - JOUR
+ID  - T21
+KW  - CSS2026:T21
+AU  - 刘七
+TI  - 书名中的问号？冒号：破折号——测试
+PY  - 2022
+JF  - 新闻与传播研究
+IS  - 8
+LA  - Chinese
+DO  - 10.1234/test.2022.8
+N1  - SCENE=中文期刊—题名特殊标点
+N1  - SUGGESTED_CITED_PAGES=105
+ER  - 
+
+TY  - JOUR
+ID  - T22
+KW  - CSS2026:T22
+AU  - 钱十三
+TI  - 无Cited Pages测试
+PY  - 2020
+JF  - 社会学研究
+IS  - 1
+LA  - Chinese
+SP  - 10–25
+N1  - SCENE=中文期刊—未填具体引文页
+N1  - SUGGESTED_CITED_PAGES=
+ER  - 
+
+TY  - CHAP
+ID  - T23
+KW  - CSS2026:T23
+AU  - 梁启超
+TI  - 中国史叙论
+PY  - 1999
+VL  - 1
+CY  - 北京
+PB  - 北京出版社
+T2  - 梁启超全集
+LA  - Chinese
+N1  - SCENE=中文析出—单一作者
+N1  - SUGGESTED_CITED_PAGES=448–454
+ER  - 
+
+TY  - CHAP
+ID  - T24
+KW  - CSS2026:T24
+AU  - 赵六
+TI  - 公共治理中的协同生产
+PY  - 2023
+CY  - 北京
+PB  - 社会科学文献出版社
+T2  - 公共治理新论
+LA  - Chinese
+ED  - 孙七
+N1  - SCENE=中文析出—带编者
+N1  - SUGGESTED_CITED_PAGES=60
+ER  - 
+
+TY  - CHAP
+ID  - T25
+KW  - CSS2026:T25
+AU  - 克里斯·哈布尔斯·格雷
+TI  - 后人类的可能
+PY  - 2004
+CY  - 上海
+PB  - 上海三联书店
+T2  - 后人类文化
+LA  - Chinese
+ED  - 曹荣湘
+N1  - SCENE=中文析出—带译者
+N1  - SUGGESTED_CITED_PAGES=7
+N1  - TRANSLATOR=张立英
+ER  - 
+
+TY  - CHAP
+ID  - T26
+KW  - CSS2026:T26
+AU  - 陈明
+TI  - 学术研究方法
+PY  - 2020
+CY  - 北京
+PB  - 商务印书馆
+T2  - 陈明文集
+LA  - Chinese
+N1  - SCENE=中文析出—同一责任者
+N1  - SUGGESTED_CITED_PAGES=28
+ER  - 
+
+TY  - CHAP
+ID  - T27
+KW  - CSS2026:T27
+AU  - 傅铿
+TI  - 传统、克里斯玛和理性化——译序
+PY  - 2014
+CY  - 上海
+PB  - 上海人民出版社
+T2  - 论传统
+LA  - Chinese
+N1  - SCENE=中文析出—序言
+N1  - SUGGESTED_CITED_PAGES=4
+ER  - 
+
+TY  - CHAP
+ID  - T28
+KW  - CSS2026:T28
+AU  - 郑八
+TI  - 缺少编者的图书章节
+PY  - 2020
+CY  - 武汉
+PB  - 武汉大学出版社
+T2  - 基层治理研究
+LA  - Chinese
+N1  - SCENE=中文析出—缺编者
+N1  - SUGGESTED_CITED_PAGES=25
+ER  - 
+
+TY  - THES
+ID  - T29
+KW  - CSS2026:T29
+AU  - 朱思媚
+TI  - 内蒙古和林格尔县东头号墓地人骨研究
+PY  - 2016
+LA  - Chinese
+N1  - SCENE=硕士学位论文
+N1  - SUGGESTED_CITED_PAGES=51–52
+N1  - DEGREE=硕士
+N1  - UNIVERSITY=吉林大学考古学系
+ER  - 
+
+TY  - THES
+ID  - T30
+KW  - CSS2026:T30
+AU  - 王五
+TI  - 基层治理中的政策适配研究
+PY  - 2024
+LA  - Chinese
+N1  - SCENE=博士学位论文
+N1  - SUGGESTED_CITED_PAGES=76
+N1  - DEGREE=博士
+N1  - UNIVERSITY=中国传媒大学政府与公共事务学院
+ER  - 
+
+TY  - THES
+ID  - T31
+KW  - CSS2026:T31
+AU  - 林九
+TI  - 缺少学校的学位论文
+PY  - 2022
+LA  - Chinese
+N1  - SCENE=学位论文—缺学校
+N1  - SUGGESTED_CITED_PAGES=36
+N1  - DEGREE=硕士
+ER  - 
+
+TY  - CONF
+ID  - T32
+KW  - CSS2026:T32
+AU  - 尹文耀
+TI  - 再生育研究的理论和方法
+PY  - 2016
+CY  - 北京
+LA  - Chinese
+N1  - SCENE=会议论文
+N1  - SUGGESTED_CITED_PAGES=
+N1  - CONFERENCE=第二届社会科学研究方法与应用学术研讨会
+ER  - 
+
+TY  - CONF
+ID  - T33
+KW  - CSS2026:T33
+AU  - 黄十二
+TI  - 会议论文具体页码测试
+PY  - 2023
+CY  - 北京
+LA  - Chinese
+N1  - SCENE=会议论文—有页码
+N1  - SUGGESTED_CITED_PAGES=90
+N1  - CONFERENCE=国家治理现代化论坛
+ER  - 
+
+TY  - RPRT
+ID  - T34
+KW  - CSS2026:T34
+AU  - 某研究中心,
+TI  - 中国公共治理年度报告
+PY  - 2025
+CY  - 北京
+PB  - 某研究中心
+LA  - Chinese
+N1  - SCENE=机构报告
+N1  - SUGGESTED_CITED_PAGES=12
+ER  - 
+
+TY  - NEWS
+ID  - T35
+KW  - CSS2026:T35
+AU  - 常江
+TI  - 以高度文化自觉自信担负起新的文化使命
+PY  - 2023
+JF  - 中国社会科学报
+ET  - 1
+DA  - 2023年12月26日
+LA  - Chinese
+N1  - SCENE=中文报纸—有作者
+N1  - SUGGESTED_CITED_PAGES=
+ER  - 
+
+TY  - NEWS
+ID  - T36
+KW  - CSS2026:T36
+TI  - 正确理解和大力推进中国式现代化
+PY  - 2023
+JF  - 人民日报
+ET  - 1
+DA  - 2023年2月8日
+LA  - Chinese
+N1  - SCENE=中文报纸—无作者
+N1  - SUGGESTED_CITED_PAGES=
+ER  - 
+
+TY  - NEWS
+ID  - T37
+KW  - CSS2026:T37
+AU  - 费孝通
+TI  - 损蚀冲洗下的乡土
+PY  - 1947
+JF  - 大公报
+CY  - 上海
+ET  - 2
+DA  - 1947年11月30日
+LA  - Chinese
+N1  - SCENE=中文报纸—同名异地
+N1  - SUGGESTED_CITED_PAGES=
+ER  - 
+
+TY  - NEWS
+ID  - T38
+KW  - CSS2026:T38
+AU  - 刘镜人
+TI  - 英国印花税章程续编
+PY  - 1900
+JF  - 江南商务报
+IS  - 15
+DA  - 光绪二十六年六月廿一日
+LA  - Chinese
+N1  - SCENE=中文报纸—页码
+N1  - SUGGESTED_CITED_PAGES=9–12
+ER  - 
+
+TY  - NEWS
+ID  - T39
+KW  - CSS2026:T39
+AU  - 郑维钧
+TI  - 吾国银行放款事业之观察
+PY  - 1922
+JF  - 银行周报
+VL  - 6
+IS  - 47
+DA  - 1922年12月5日
+LA  - Chinese
+N1  - SCENE=中文报纸—卷号与日期
+N1  - SUGGESTED_CITED_PAGES=11–14
+ER  - 
+
+TY  - ELEC
+ID  - T40
+KW  - CSS2026:T40
+AU  - 商务部,
+TI  - 中国关于世贸组织改革的立场文件
+PY  - 2018
+DA  - 2018年12月17日
+UR  - https://example.gov.cn/document
+LA  - Chinese
+N1  - SCENE=政府网页
+N1  - SUGGESTED_CITED_PAGES=
+N1  - ACCESS=2026年5月31日
+ER  - 
+
+TY  - ELEC
+ID  - T41
+KW  - CSS2026:T41
+AU  - 陈十一
+TI  - 缺少更新日期的网页
+UR  - https://example.org/page
+LA  - Chinese
+N1  - SCENE=网页—缺更新日期
+N1  - SUGGESTED_CITED_PAGES=
+N1  - ACCESS=2026年6月1日
+ER  - 
+
+TY  - ELEC
+ID  - T42
+KW  - CSS2026:T42
+AU  - 某政府部门,
+TI  - 复杂URL保持半角测试
+PY  - 2025
+DA  - 2025年3月2日
+UR  - https://example.org/a/b?q=x%20y&lang=zh
+LA  - Chinese
+N1  - SCENE=网页—复杂URL
+N1  - SUGGESTED_CITED_PAGES=
+N1  - ACCESS=2026年6月2日
+ER  - 
+
+TY  - GOVDOC
+ID  - T43
+KW  - CSS2026:T43
+AU  - 某市人民政府,
+TI  - 国家治理现代化指导意见
+PY  - 2024
+CY  - 某市
+PB  - 某市人民政府
+LA  - Chinese
+N1  - SCENE=政府文件—出版项
+N1  - SUGGESTED_CITED_PAGES=
+ER  - 
+
+TY  - GOVDOC
+ID  - T44
+KW  - CSS2026:T44
+AU  - 某部门,
+TI  - 政府信息公开文件
+PY  - 2025
+UR  - https://example.gov.cn/open
+LA  - Chinese
+N1  - SCENE=政府文件—网址
+N1  - SUGGESTED_CITED_PAGES=3
+ER  - 
+
+TY  - MANSCPT
+ID  - T45
+KW  - CSS2026:T45
+AU  - 陈官俊
+TI  - 奏为爱民恤吏敬陈管见事
+PY  - 1820
+PB  - 中国第一历史档案馆
+DA  - 嘉庆二十五年十月十二日
+LA  - Chinese
+N1  - SCENE=档案—有作者
+N1  - SUGGESTED_CITED_PAGES=
+N1  - COLLECTION=宫中奏折
+N1  - ARCHIVE_NO=04—01—13—0217—001
+ER  - 
+
+TY  - MANSCPT
+ID  - T46
+KW  - CSS2026:T46
+TI  - 外务部致吕大臣、盛大臣
+PY  - 1902
+PB  - 上海图书馆
+DA  - 1902年2月27日
+LA  - Chinese
+N1  - SCENE=档案—无作者
+N1  - SUGGESTED_CITED_PAGES=
+N1  - COLLECTION=盛宣怀档案
+N1  - ARCHIVE_NO=004220
+ER  - 
+
+TY  - CLSWK
+ID  - T47
+KW  - CSS2026:T47
+AU  - 姚际恒
+TI  - 古今伪书考
+PY  - 1877
+LA  - Chinese
+LB  - 卷3，光绪三年苏州文学山房活字本
+N1  - SCENE=古籍—刻本
+N1  - SUGGESTED_CITED_PAGES=9页a
+ER  - 
+
+TY  - CLSWK
+ID  - T48
+KW  - CSS2026:T48
+AU  - 孔安国传，孔颖达正义,
+TI  - 尚书正义
+PY  - 2007
+CY  - 上海
+PB  - 上海古籍出版社
+LA  - Chinese
+LB  - 卷13《周书·康诰第十一》
+ED  - 黄怀信
+N1  - SCENE=古籍—点校整理本
+N1  - SUGGESTED_CITED_PAGES=529
+ER  - 
+
+TY  - CLSWK
+ID  - T49
+KW  - CSS2026:T49
+TI  - 太平御览
+PY  - 1985
+CY  - 北京
+PB  - 中华书局
+LA  - Chinese
+LB  - 卷690《服章部七》引《魏台访议》，影印本
+N1  - SCENE=古籍—影印本
+N1  - SUGGESTED_CITED_PAGES=3080
+ER  - 
+
+TY  - CLSWK
+ID  - T50
+KW  - CSS2026:T50
+AU  - 周伯琦
+TI  - 近光集
+PY  - 1986
+CY  - 台北
+PB  - 台湾商务印书馆
+LA  - Chinese
+LB  - 卷2《立秋日书事五首》，景印文渊阁《四库全书》第1214册
+N1  - SCENE=古籍—丛书析出
+N1  - SUGGESTED_CITED_PAGES=523
+ER  - 
+
+TY  - CLSWK
+ID  - T51
+KW  - CSS2026:T51
+TI  - 嘉定县志
+LA  - Chinese
+LB  - 卷12，乾隆本《风俗》
+N1  - SCENE=古籍—地方志
+N1  - SUGGESTED_CITED_PAGES=7
+ER  - 
+
+TY  - CLSWK
+ID  - T52
+KW  - CSS2026:T52
+TI  - 旧唐书
+PY  - 1975
+CY  - 北京
+PB  - 中华书局
+LA  - Chinese
+LB  - 卷9《玄宗纪下》
+N1  - SCENE=常用基本典籍
+N1  - SUGGESTED_CITED_PAGES=233
+ER  - 
+
+TY  - CLSWK
+ID  - T53
+KW  - CSS2026:T53
+TI  - 资治通鉴
+PY  - 1956
+CY  - 北京
+PB  - 中华书局
+LA  - Chinese
+LB  - 卷194，唐太宗贞观十年（636）十二月条
+N1  - SCENE=年号换算
+N1  - SUGGESTED_CITED_PAGES=6124
+ER  - 
+
+TY  - GEN
+ID  - T54
+KW  - CSS2026:T54
+AU  - 汪应辰
+TI  - 汪玉山集·乞申严元置斥堠铺指挥札子
+PY  - 1986
+LA  - Chinese
+N1  - SCENE=转引文献
+N1  - SUGGESTED_CITED_PAGES=
+N1  - NOTE=转引自《永乐大典》卷14575，北京：中华书局，1986年，第6458页
+ER  - 
+
+TY  - BOOK
+ID  - T55
+KW  - CSS2026:T55
+AU  - Brooks, Peter
+TI  - Troubling Confessions: Speaking Guilt in Law and Literature
+PY  - 2000
+CY  - Chicago
+PB  - University of Chicago Press
+LA  - English
+N1  - SCENE=英文专著—单一作者
+N1  - SUGGESTED_CITED_PAGES=48
+ER  - 
+
+TY  - BOOK
+ID  - T56
+KW  - CSS2026:T56
+AU  - Starn, Randolph
+AU  - Partridge, Loren
+TI  - The Arts of Power: Three Halls of State in Italy, 1300-1600
+PY  - 1992
+CY  - Berkeley
+PB  - California University Press
+LA  - English
+N1  - SCENE=英文专著—两位作者
+N1  - SUGGESTED_CITED_PAGES=19–28
+ER  - 
+
+TY  - BOOK
+ID  - T57
+KW  - CSS2026:T57
+AU  - Polo, M.
+TI  - The Travels of Marco Polo
+PY  - 1997
+CY  - Hertfordshire
+PB  - Cumberland House
+LA  - English
+N1  - SCENE=英文译著
+N1  - SUGGESTED_CITED_PAGES=55, 88
+N1  - TRANSLATOR=Marsden, William
+ER  - 
+
+TY  - JOUR
+ID  - T58
+KW  - CSS2026:T58
+AU  - Chamberlain, Heath B.
+TI  - On the Search for Civil Society in China
+PY  - 1993
+JF  - Modern China
+VL  - 19
+IS  - 2
+DA  - April 1993
+LA  - English
+N1  - SCENE=英文期刊论文
+N1  - SUGGESTED_CITED_PAGES=199–215
+ER  - 
+
+TY  - CHAP
+ID  - T59
+KW  - CSS2026:T59
+AU  - Schofield, R. S.
+TI  - The Impact of Scarcity and Plenty on Population Change in England
+PY  - 1983
+CY  - Cambridge, Mass.
+PB  - Cambridge University Press
+T2  - Hunger and History: The Impact of Changing Food Production and Consumption Pattern on Society
+LA  - English
+ED  - Rotberg, R. I.
+ED  - Rabb, T. K.
+N1  - SCENE=英文文集析出
+N1  - SUGGESTED_CITED_PAGES=79
+ER  - 
+
+TY  - JOUR
+ID  - T60
+KW  - CSS2026:T60
+AU  - Smith, John
+AU  - Jones, Mary
+AU  - Brown, Alice
+AU  - White, David
+TI  - English Author Truncation Test
+PY  - 2024
+JF  - Journal of Test Studies
+VL  - 10
+IS  - 2
+LA  - English
+N1  - SCENE=英文期刊—四位作者
+N1  - SUGGESTED_CITED_PAGES=20–23
+ER  - 
+
+TY  - BOOK
+ID  - T61
+KW  - CSS2026:T61
+TI  - 宋代礼説研究
+PY  - 1996
+PB  - 渓水社
+LA  - Japanese
+N1  - SCENE=日文著作
+N1  - SUGGESTED_CITED_PAGES=153
+N1  - FORMATTED_AUTHOR=山根三芳
+ER  - 
+
+TY  - CHAP
+ID  - T62
+KW  - CSS2026:T62
+TI  - 『反応』から『理念』へ―対アフリカ外交
+PY  - 2013
+PB  - 岩波書店
+T2  - 日本の外交 第４巻 対外政策 地域編
+LA  - Japanese
+N1  - SCENE=日文析出文献
+N1  - SUGGESTED_CITED_PAGES=300
+N1  - FORMATTED_AUTHOR=遠藤貢
+N1  - FORMATTED_EDITOR=国分良成
+ER  - 
+
+TY  - JOUR
+ID  - T63
+KW  - CSS2026:T63
+TI  - キャンパスの文章
+PY  - 1995
+JF  - 國文學: 解釈と教材の研究
+VL  - 40
+IS  - 2
+LA  - Japanese
+N1  - SCENE=日文期刊论文
+N1  - SUGGESTED_CITED_PAGES=71–74
+N1  - FORMATTED_AUTHOR=梅津彰人
+ER  - 
+
+TY  - GEN
+ID  - T64
+KW  - CSS2026:T64
+TI  - 预排版脚注兜底测试
+LA  - Chinese
+N1  - SCENE=预排版特殊文献
+N1  - SUGGESTED_CITED_PAGES=
+N1  - NOTE=将完整注文填入 Complete Footnote 字段，样式不得添加或删除任何字符。
+ER  - 

@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>EndNoteStyleToolbox</AssemblyName>
+    <RootNamespace>EndNoteStyleToolbox</RootNamespace>
+    <Version>0.3.0</Version>
+    <FileVersion>0.3.0.0</FileVersion>
+    <AssemblyVersion>0.3.0.0</AssemblyVersion>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <SelfContained>true</SelfContained>
+    <PublishSingleFile>true</PublishSingleFile>
+    <IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
+    <EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="../../app/style-manifest.json"
+                      LogicalName="EndNoteStyleToolbox.Assets.style-manifest.json" />
+    <EmbeddedResource Include="../../app/Styles/*.ens"
+                      LogicalName="EndNoteStyleToolbox.Assets.Styles.%(Filename)%(Extension)" />
+    <EmbeddedResource Include="../../app/格式库测试矩阵.xlsx"
+                      LogicalName="EndNoteStyleToolbox.Assets.TestMatrix.xlsx" />
+    <EmbeddedResource Include="../../app/64条标准测试文献.ris"
+                      LogicalName="EndNoteStyleToolbox.Assets.TestReferences.ris" />
+    <EmbeddedResource Include="../../app/统一多语种文献类型.xml"
+                      LogicalName="EndNoteStyleToolbox.Assets.ReferenceTypes.xml" />
+    <EmbeddedResource Include="../../app/THIRD_PARTY_NOTICES.md"
+                      LogicalName="EndNoteStyleToolbox.Assets.ThirdPartyNotices.md" />
+  </ItemGroup>
+</Project>
