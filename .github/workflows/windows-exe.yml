@@ -1,0 +1,71 @@
+name: Windows EXE
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-launch-test:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "8.0.x"
+
+      - name: Publish self-contained Windows EXE
+        shell: pwsh
+        run: >-
+          dotnet publish windows/EndNoteStyleToolbox/EndNoteStyleToolbox.csproj
+          -c Release
+          -r win-x64
+          --self-contained true
+          -p:PublishSingleFile=true
+          -o artifacts/win-x64
+
+      - name: Launch EXE and run embedded self-test
+        shell: pwsh
+        run: |
+          $exe = Join-Path $PWD "artifacts/win-x64/EndNoteStyleToolbox.exe"
+          $report = Join-Path $PWD "artifacts/self-test.json"
+          if (-not (Test-Path -LiteralPath $exe)) {
+            throw "Published EXE was not found: $exe"
+          }
+          $process = Start-Process -FilePath $exe -ArgumentList @("--self-test", $report) -Wait -PassThru
+          if (Test-Path -LiteralPath $report) {
+            Get-Content -LiteralPath $report
+          }
+          if ($process.ExitCode -ne 0) {
+            throw "EXE self-test failed with exit code $($process.ExitCode)."
+          }
+          $result = Get-Content -LiteralPath $report -Raw | ConvertFrom-Json
+          if ($result.status -ne "passed") {
+            throw "EXE self-test did not report passed."
+          }
+          if ($result.checks.Count -lt 28) {
+            throw "EXE self-test executed too few checks: $($result.checks.Count)"
+          }
+
+      - name: Create checksum
+        shell: pwsh
+        run: |
+          $exe = "artifacts/win-x64/EndNoteStyleToolbox.exe"
+          $hash = (Get-FileHash -LiteralPath $exe -Algorithm SHA256).Hash.ToLowerInvariant()
+          "$hash  EndNoteStyleToolbox.exe" | Set-Content -LiteralPath "artifacts/win-x64/EndNoteStyleToolbox.exe.sha256" -Encoding ascii
+
+      - name: Upload tested EXE
+        uses: actions/upload-artifact@v4
+        with:
+          name: EndNoteStyleToolbox-win-x64
+          path: |
+            artifacts/win-x64/EndNoteStyleToolbox.exe
+            artifacts/win-x64/EndNoteStyleToolbox.exe.sha256
+            artifacts/self-test.json
+          if-no-files-found: error
+          retention-days: 14
