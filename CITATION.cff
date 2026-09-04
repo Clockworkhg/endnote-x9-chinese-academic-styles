@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+title: "EndNote X9 Chinese Academic Footnote Style Toolkit"
+type: software
+authors:
+  - name: Clockworkhg
+    email: hershelgao@gmail.com
+version: 0.2.0
+date-released: 2026-09-04
+license:
+  - MIT
+  - CC-BY-SA-3.0
+repository-code: "https://github.com/Clockworkhg/endnote-x9-chinese-academic-styles"
+url: "https://github.com/Clockworkhg/endnote-x9-chinese-academic-styles"
+abstract: "An EndNote X9 Chinese academic footnote style library and portable Windows visual installer."

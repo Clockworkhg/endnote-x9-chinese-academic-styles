@@ -1,0 +1,17 @@
+This repository is distributed under multiple licenses.
+
+1. Original Python, PowerShell, batch, HTML, test, and documentation code
+   authored for this project is licensed under the MIT License. See:
+   licenses/MIT-Clockworkhg.txt
+
+2. Citation-style rules, examples, manifests, and generated style data derived
+   from zotero-chinese/styles are licensed under Creative Commons
+   Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0). See:
+   licenses/CC-BY-SA-3.0.txt
+
+3. Materials derived from chugit/EndNote_Chinese_Literature retain its MIT
+   copyright and license notice. See:
+   licenses/MIT-chugit.txt
+
+4. Third-party names, trademarks, and source assets remain the property of
+   their respective owners. See THIRD_PARTY_NOTICES.md before redistribution.

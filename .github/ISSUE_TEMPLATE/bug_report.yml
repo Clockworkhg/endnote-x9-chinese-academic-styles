@@ -1,0 +1,40 @@
+name: 样式输出问题
+description: 报告EndNote、Word或WPS中的脚注输出问题
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: input
+    id: versions
+    attributes:
+      label: 软件版本
+      description: EndNote、Word或WPS版本
+    validations:
+      required: true
+  - type: dropdown
+    id: style
+    attributes:
+      label: 使用的样式
+      options:
+        - 中国社会科学（2026）
+        - 其他样式
+    validations:
+      required: true
+  - type: textarea
+    id: fields
+    attributes:
+      label: 文献类型和字段
+      description: 请隐去私人信息，不要上传完整未公开书稿。
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: 实际输出
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: 期望输出及规范依据
+    validations:
+      required: true
