@@ -17,6 +17,8 @@ internal static class UpdateSelfTestRunner
         }
     }
 
+    private sealed class SilentProgress : IProgress<string> { public void Report(string value) { } }
+
     public static async Task NetworkAsync(ICollection<string> checks)
     {
         const string tag = "v99.0.0";
@@ -45,6 +47,20 @@ internal static class UpdateSelfTestRunner
         try { await UpdateService.CheckAsync(CancellationToken.None, invalid); } catch (InvalidDataException) { rejected = true; }
         if (!rejected) throw new IOException("Foreign update URL was accepted.");
         checks.Add("Foreign release asset URL is rejected.");
+        using var downloadCancelled = new HttpClient(new FixtureHandler(_ => throw new IOException("Cancelled download reached network.")));
+        rejected = false;
+        try { await UpdateService.DownloadAsync(release!, new SilentProgress(), cancelled.Token, downloadCancelled); }
+        catch (OperationCanceledException) { rejected = true; }
+        if (!rejected) throw new IOException("Cancelled download was not stopped.");
+        checks.Add("Cancelled download stops before replacement.");
+        using var badDownload = new HttpClient(new FixtureHandler(request => new(HttpStatusCode.OK) {
+            Content = new StringContent(request.RequestUri!.AbsolutePath.EndsWith(".sha256") ?
+                new string('0', 64) + "  EndNoteStyleToolbox.exe" : "corrupted payload") }));
+        rejected = false;
+        try { await UpdateService.DownloadAsync(release!, new SilentProgress(), CancellationToken.None, badDownload); }
+        catch (InvalidDataException) { rejected = true; }
+        if (!rejected) throw new IOException("Corrupted download was accepted.");
+        checks.Add("Downloaded payload with mismatched checksum is rejected.");
     }
 
     public static void Run(string root, ICollection<string> checks)
@@ -61,6 +77,8 @@ internal static class UpdateSelfTestRunner
             File.Copy(executable, target);
             File.Copy(executable, helper);
             File.Copy(executable, source);
+            // A valid PE with distinguishable bytes proves rollback restores the old version.
+            using (var append = new FileStream(source, FileMode.Append)) append.WriteByte(0);
             string Hash(string path) { using var stream = File.OpenRead(path); return Convert.ToHexString(SHA256.HashData(stream)); }
             var originalHash = Hash(target);
             var hash = scenario == "hash-mismatch" ? new string('0', 64) : Hash(source);
@@ -81,7 +99,8 @@ internal static class UpdateSelfTestRunner
             }
             if (scenario == "success")
             {
-                if (process.ExitCode != 0 || !File.Exists(marker) || !File.Exists(Path.Combine(staging, "previous.exe")))
+                if (process.ExitCode != 0 || !File.Exists(marker) || !File.Exists(Path.Combine(staging, "previous.exe")) ||
+                    Hash(target) != hash || Hash(Path.Combine(staging, "previous.exe")) != originalHash)
                     throw new IOException("Successful update did not pass real GUI health acknowledgement.");
             }
             else if (process.ExitCode == 0 || !File.Exists(target) || Hash(target) != originalHash)

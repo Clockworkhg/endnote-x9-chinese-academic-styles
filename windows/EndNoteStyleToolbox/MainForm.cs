@@ -146,19 +146,19 @@ internal sealed class MainForm : Form
         panel.Controls.Add(NewFilterLabel("搜索"), 0, 0);
         _searchBox.Dock = DockStyle.Fill;
         _searchBox.PlaceholderText = "输入期刊、出版社或学科名称";
-        _searchBox.TextChanged += (_, _) => RefreshGrid();
+        _searchBox.TextChanged += (_, _) => RunSafely(() => RefreshGrid());
         panel.Controls.Add(_searchBox, 1, 0);
 
         panel.Controls.Add(NewFilterLabel("分类"), 2, 0);
         _categoryBox.Dock = DockStyle.Fill;
         _categoryBox.DropDownStyle = ComboBoxStyle.DropDownList;
-        _categoryBox.SelectedIndexChanged += (_, _) => RefreshGrid();
+        _categoryBox.SelectedIndexChanged += (_, _) => RunSafely(() => RefreshGrid());
         panel.Controls.Add(_categoryBox, 3, 0);
 
         var refreshButton = NewButton("刷新状态", secondary: true);
         refreshButton.Dock = DockStyle.Fill;
         refreshButton.Margin = new Padding(8, 0, 0, 0);
-        refreshButton.Click += (_, _) => RefreshGrid(keepSelection: true);
+        refreshButton.Click += (_, _) => RunSafely(() => RefreshGrid(keepSelection: true));
         panel.Controls.Add(refreshButton, 4, 0);
         return panel;
     }

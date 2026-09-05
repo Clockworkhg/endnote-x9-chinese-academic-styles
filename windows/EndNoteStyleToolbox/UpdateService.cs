@@ -69,6 +69,8 @@ internal static class UpdateService
             throw new IOException($"自动更新要求程序文件名为 {Filename}。请恢复该名称，或从发布页手动更新。");
         var staging = Path.Combine(Path.GetDirectoryName(target)!, ".toolbox-update-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(staging);
+        try
+        {
         using var client = testClient ?? Client();
         var checksumText = await client.GetStringAsync(release.ChecksumUrl, token);
         var parts = checksumText.Trim().Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries);
@@ -98,6 +100,24 @@ internal static class UpdateService
         File.WriteAllText(Path.Combine(staging, "plan.json"), JsonSerializer.Serialize(plan));
         progress.Report("下载校验通过，等待确认重启。");
         return staging;
+        }
+        catch
+        {
+            // Only this request's generated staging directory is eligible for cleanup.
+            // Never delete a recovery directory created by the apply stage.
+            try
+            {
+                foreach (var name in new[] { "new.exe", "updater.exe", "plan.json" })
+                {
+                    var path = Path.Combine(staging, name);
+                    if (File.Exists(path)) File.Delete(path);
+                }
+                Directory.Delete(staging, false);
+            }
+            catch (IOException) { }
+            catch (UnauthorizedAccessException) { }
+            throw;
+        }
     }
 
     public static void StartApply(string staging)
