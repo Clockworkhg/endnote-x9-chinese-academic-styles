@@ -589,20 +589,39 @@ internal sealed class MainForm : Form
 
     private void ShowHelp()
     {
-        MessageBox.Show(
-            "使用方法\r\n\r\n" +
-            "1. 选择格式并点击“安装所选格式”，或直接“安装全部”。\r\n" +
-            "2. 重新打开EndNote X9。\r\n" +
-            "3. 在Word/WPS的EndNote选项卡中选择相应样式。\r\n" +
-            "4. 本次引文页码仍在 Edit & Manage Citation(s) 的 Pages 中填写。\r\n\r\n" +
-            "安全说明\r\n\r\n" +
-            "程序写入当前选定目录；请选择与 EndNote 的 Styles Folder 一致的位置。覆盖前备份；卸载只处理有匹配安装记录且未被修改的文件。\r\n" +
-            "旧版安装或自行修改的文件会保留，可先备份后重新安装以纳入管理。备份与恢复入口可查看恢复副本。\r\n\r\n" +
-            "样式是参考适配，不代表全部通过 EndNote 实机测试；实验性格式请先在空白文档验收。\r\n\r\n" +
-            "本项目为非官方工具，与Clarivate及各期刊、出版社无隶属关系。",
-            "使用帮助",
-            MessageBoxButtons.OK,
-            MessageBoxIcon.Information);
+        const string help = "安装并启用格式\r\n\r\n" +
+            "1. 选择格式，点击“安装所选格式”。\r\n" +
+            "2. 重新打开 EndNote X9，进入 Edit → Output Styles → Open Style Manager，找到安装的样式并勾选。\r\n" +
+            "3. 在 Word/WPS 的 EndNote 选项卡选择相应 Style；未列出时使用 Select Another Style。\r\n" +
+            "4. 用 Word/WPS 插入脚注，再在脚注内插入文献。本次页码在 Edit & Manage Citation(s) → Pages 填写。\r\n\r\n" +
+            "中、英、日文如何切换\r\n\r\n" +
+            "当前按文献的 Reference Type 选择模板；仅填写 Language 或选中文献不会切换。文档保持同一个 Style。\r\n" +
+            "首次使用：点击“导出测试与配置”。在 EndNote 的 Edit → Preferences → Reference Types 中先 Export 备份现有类型定义，再 Import 导出的“统一多语种文献类型.xml”。这不是 File → Import 的文献导入。已有自定义类型时，请先检查是否冲突。\r\n" +
+            "中文：使用 Book、Journal Article、Book Section 等普通类型，作者填 Author。中文译本按中文文献处理。\r\n" +
+            "英文：打开记录，将 Reference Type 改成 English Book、English Journal Article 或 English Book Section；把 Original Author (backup) 中的作者复制到 English Author，一人一行，例如 Brooks, Peter。原作者备份保留。章节编者核对 English Editor。\r\n" +
+            "日文：选择 Japanese Book、Japanese Journal Article 或 Japanese Book Section；在 Japanese Authors (formatted) 填写排好顺序及分隔符的作者文字。章节编者填 Japanese Editor (formatted)。\r\n" +
+            "保存记录，回到 Word/WPS 点击 Update Citations and Bibliography。必要时在 Edit & Manage Citation(s) 中使用 Update from My Library 同步库中修改。\r\n" +
+            "切换前后检查作者、编者、题名、出版项和页码，勿覆盖已有专用字段。当前没有自动翻译，也没有按 Language 批量转换功能。\r\n" +
+            "多语言名称来自上游样式；当前英日文模板主要继承中国社会科学基线，不表示已完整实现上游所有语种和细则。\r\n\r\n" +
+            "安装、卸载与恢复\r\n\r\n" +
+            "安装位置须与 EndNote 的 Styles Folder 一致。覆盖前备份；卸载只处理有匹配记录且未修改的文件。旧版或自行修改的文件会保留。可从“备份与恢复”查看副本。\r\n\r\n" +
+            "脚注序号和排版由 Word/WPS 控制。预览/实验性样式仍需实际核对。本项目与 Clarivate 及各期刊、出版社无隶属关系。";
+        using var dialog = new Form
+        {
+            Text = "使用帮助", StartPosition = FormStartPosition.CenterParent,
+            Size = new Size(780, 580), MinimumSize = new Size(540, 360),
+            MinimizeBox = false, MaximizeBox = false, Font = Font
+        };
+        var content = new TextBox
+        {
+            Multiline = true, ReadOnly = true, ScrollBars = ScrollBars.Vertical,
+            Dock = DockStyle.Fill, Text = help, BackColor = SystemColors.Window,
+            BorderStyle = BorderStyle.None, Margin = new Padding(16)
+        };
+        var panel = new Panel { Dock = DockStyle.Fill, Padding = new Padding(20) };
+        panel.Controls.Add(content);
+        dialog.Controls.Add(panel);
+        dialog.ShowDialog(this);
     }
 
     private void RunSafely(Action action)

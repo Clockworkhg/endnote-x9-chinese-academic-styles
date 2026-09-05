@@ -9,7 +9,8 @@
    中找到 Styles Folder，将两边路径核对一致。可“自动检测”候选位置，或“选择文件夹”。
 3. 勾选“我已核对”，保存。工具箱不会替你修改 EndNote 的偏好设置。
 4. 在格式库搜索需要的样式，点击“安装所选格式”。已有同名文件会先备份。
-5. 重新打开 EndNote，并在 Word/WPS 的 EndNote 样式列表选择对应样式。
+5. 重新打开 EndNote X9，进入 Edit → Output Styles → Open Style Manager，找到安装的样式并勾选。
+   回到 Word/WPS，在 EndNote 的 Style 列表选择相应样式；未列出时使用 Select Another Style。
 6. 脚注序号继续由 Word/WPS 设置；本次引用页码在 Edit & Manage Citation(s) → Pages 填写。
 
 自动检测只列出可能的个人目录，不证明 EndNote 一定使用该位置。
@@ -47,3 +48,30 @@ SHA-256 用于校验下载内容，不等同于 Windows 代码签名。
 - 样式的来源、适配说明和实验性标记不代表出版社或学校官方认证。
 
 GUI 自动测试不包含 EndNote/Word/WPS 的真实引文渲染；不同软件版本仍需实际核对。
+
+## 中、英、日文模板的选择
+
+当前使用 Reference Type（文献类型）分流，不按 Language 自动判断；文档保持同一个 Style，
+也无需在每次插入前切换整个文档的样式。作者、题名不会自动翻译。
+
+首次使用，在工具箱点击“导出测试与配置”。在 EndNote X9 的 Edit → Preferences → Reference Types
+中先 Export 备份原有类型定义，再 Import “统一多语种文献类型.xml”。这是类型配置导入，
+不是 File → Import 的文献导入。已有自定义类型时，先核对冲突，不能直接覆盖已有工作流程。
+
+| 文献 | Reference Type | 作者字段 |
+|---|---|---|
+| 中文及中文译本 | Book / Journal Article / Book Section | Author |
+| 英文图书 | English Book | English Author |
+| 英文期刊论文 | English Journal Article | English Author |
+| 英文章节 | English Book Section | English Author；编者核对 English Editor |
+| 日文图书、期刊、章节 | Japanese Book / Japanese Journal Article / Japanese Book Section | Japanese Authors (formatted)；章节编者填 Japanese Editor (formatted) |
+
+以 Peter Brooks 的英文图书为例：打开记录，改成 English Book，将 Original Author (backup)
+中的作者复制到 English Author，填写 `Brooks, Peter`。多位作者一人一行，保留原作者备份。
+日文作者字段使用已排好作者顺序和分隔符的文字。切换前后核对原字段，勿覆盖已有专用字段内容。
+保存记录，在 Word/WPS 点击 Update Citations and Bibliography；必要时通过
+Edit & Manage Citation(s) → Update from My Library 同步库中修改。
+
+当前没有按 Language 批量转换记录的功能。普通 Book 中即使 Language 写 English，仍走普通模板。
+多语言样式的名称沿用上游；当前英日文模板主要继承中国社会科学基线，不能据此声称已完整适配
+上游所有语言和规则。其他语种或特殊文献须按实际模板核对，不能承诺任意文献自动准确显示。
