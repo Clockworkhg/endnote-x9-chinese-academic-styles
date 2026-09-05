@@ -4,6 +4,7 @@ import json
 
 ROOT = Path("app")
 PROJECT = Path("windows/EndNoteStyleToolbox")
+EXPECTED_STYLE_COUNT = 47
 
 
 def test_exe_project_structure():
@@ -49,8 +50,8 @@ def test_exe_embeds_all_runtime_assets():
 
 def test_manifest_and_styles():
     manifest = json.loads((ROOT / "style-manifest.json").read_text(encoding="utf-8"))
-    assert len(manifest) == 18
-    assert len(list((ROOT / "Styles").glob("*.ens"))) == 18
+    assert len(manifest) == EXPECTED_STYLE_COUNT
+    assert len(list((ROOT / "Styles").glob("*.ens"))) == EXPECTED_STYLE_COUNT
     assert all((ROOT / "Styles" / item["filename"]).is_file() for item in manifest)
 
 
@@ -79,10 +80,10 @@ def test_headless_self_test_covers_exe_resources_and_lifecycle():
     program = (PROJECT / "Program.cs").read_text(encoding="utf-8")
     assert '"--self-test"' in program
     for token in [
-        "Manifest contains 18 styles",
+        "Manifest contains all 46 upstream note styles plus the CUC profile",
         "Main window constructs successfully",
         "Main window handle can be created",
-        "Assembly contains 18 ENS resources",
+        "Assembly contains {styles.Count} ENS resources",
         "SHA-256 matches",
         "Install writes the embedded ENS",
         "Reinstall backs up the existing file",
