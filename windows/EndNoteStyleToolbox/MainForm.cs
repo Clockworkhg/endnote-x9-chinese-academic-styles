@@ -10,7 +10,9 @@ internal sealed class MainForm : Form
     }
 
     private readonly IReadOnlyList<StyleInfo> _styles;
-    private readonly StyleService _service;
+    private StyleService _service;
+    private AppSettings _settings;
+    private bool _installedOnly;
     private readonly TextBox _searchBox = new();
     private readonly ComboBox _categoryBox = new();
     private readonly DataGridView _grid = new();
@@ -27,12 +29,18 @@ internal sealed class MainForm : Form
     public MainForm()
     {
         _styles = EmbeddedAssets.LoadManifest();
-        _service = new StyleService();
+        _settings = AppSettings.Load();
+        try { _service = new StyleService(_settings.StyleDirectory); }
+        catch (Exception ex) when (ex is IOException or ArgumentException or UnauthorizedAccessException)
+        {
+            _settings = new AppSettings();
+            _service = new StyleService();
+        }
 
         Text = "EndNote中文学术格式工具箱";
         StartPosition = FormStartPosition.CenterScreen;
-        MinimumSize = new Size(980, 660);
-        ClientSize = new Size(1120, 740);
+        MinimumSize = new Size(1140, 680);
+        ClientSize = new Size(1280, 780);
         AutoScaleMode = AutoScaleMode.Dpi;
         Font = new Font("Microsoft YaHei UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
         BackColor = Color.FromArgb(246, 248, 251);
@@ -42,7 +50,7 @@ internal sealed class MainForm : Form
         {
             ConfigureInitialSplit();
             PopulateCategories();
-            RefreshGrid();
+            RunSafely(() => RefreshGrid());
         };
     }
 
@@ -60,7 +68,25 @@ internal sealed class MainForm : Form
         root.RowStyles.Add(new RowStyle(SizeType.Absolute, 54));
         root.RowStyles.Add(new RowStyle(SizeType.Percent, 100));
         root.RowStyles.Add(new RowStyle(SizeType.Absolute, 58));
-        Controls.Add(root);
+        var shell = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 2, RowCount = 1 };
+        shell.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 150));
+        shell.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
+        var navigation = new FlowLayoutPanel { Dock = DockStyle.Fill, FlowDirection = FlowDirection.TopDown, WrapContents = false, Padding = new Padding(10, 24, 10, 10), BackColor = Color.FromArgb(230, 237, 247) };
+        void Navigate(string label, Action action)
+        {
+            var button = new Button { Text = label, Size = new Size(125, 44), FlatStyle = FlatStyle.Flat, Margin = new Padding(0, 0, 0, 12) };
+            button.Click += (_, _) => RunSafely(action);
+            navigation.Controls.Add(button);
+        }
+        Navigate("格式库", () => { _installedOnly = false; RefreshGrid(); });
+        Navigate("已安装", () => { _installedOnly = true; RefreshGrid(); });
+        Navigate("安装位置", ConfigureDirectory);
+        Navigate("备份与恢复", OpenBackups);
+        Navigate("更新中心", () => { using var dialog = new UpdateDialog(); dialog.ShowDialog(this); });
+        Navigate("测试与帮助", ShowHelp);
+        shell.Controls.Add(navigation, 0, 0);
+        shell.Controls.Add(root, 1, 0);
+        Controls.Add(shell);
 
         root.Controls.Add(BuildHeader(), 0, 0);
         root.Controls.Add(BuildFilters(), 0, 1);
@@ -76,7 +102,7 @@ internal sealed class MainForm : Form
         _statusLabel.Text = "就绪";
         statusStrip.Items.Add(_statusLabel);
         statusStrip.Items.Add(new ToolStripStatusLabel { Spring = true });
-        statusStrip.Items.Add(new ToolStripStatusLabel("v0.4.0 · 64位 · 无需管理员权限"));
+        statusStrip.Items.Add(new ToolStripStatusLabel("v0.5.0 · 64位 · 个人目录安装"));
         Controls.Add(statusStrip);
     }
 
@@ -283,7 +309,7 @@ internal sealed class MainForm : Form
         _pathLabel.AutoSize = true;
         _pathLabel.MaximumSize = new Size(390, 0);
         _pathLabel.ForeColor = Color.FromArgb(92, 102, 117);
-        _pathLabel.Text = "安装目录：" + _service.TargetDirectory;
+        UpdatePathLabel();
         card.Controls.Add(_pathLabel, 0, 5);
 
         var links = new FlowLayoutPanel
@@ -419,6 +445,7 @@ internal sealed class MainForm : Form
         foreach (var style in filtered)
         {
             var state = _service.GetState(style);
+            if (_installedOnly && state == InstalledState.NotInstalled) continue;
             var index = _grid.Rows.Add(
                 style.Number.ToString("00"),
                 style.Title,
@@ -476,6 +503,7 @@ internal sealed class MainForm : Form
     {
         var style = SelectedStyle();
         if (style is null) return;
+        if (!EnsureDirectory()) return;
         RunSafely(() => CompleteOperation(_service.Install(style)));
     }
 
@@ -492,6 +520,7 @@ internal sealed class MainForm : Form
 
     private void InstallAll()
     {
+        if (!EnsureDirectory()) return;
         if (!Confirm($"确定安装全部{_styles.Count}套中文学术格式吗？\r\n\r\n同名文件将先自动备份。"))
         {
             return;
@@ -571,7 +600,9 @@ internal sealed class MainForm : Form
             "3. 在Word/WPS的EndNote选项卡中选择相应样式。\r\n" +
             "4. 本次引文页码仍在 Edit & Manage Citation(s) 的 Pages 中填写。\r\n\r\n" +
             "安全说明\r\n\r\n" +
-            "程序仅写入当前用户“文档\\EndNote\\Styles”目录；覆盖前自动备份，卸载时也保留恢复副本。\r\n\r\n" +
+            "程序写入当前选定目录；请选择与 EndNote 的 Styles Folder 一致的位置。覆盖前备份；卸载只处理有匹配安装记录且未被修改的文件。\r\n" +
+            "旧版安装或自行修改的文件会保留，可先备份后重新安装以纳入管理。备份与恢复入口可查看恢复副本。\r\n\r\n" +
+            "样式是参考适配，不代表全部通过 EndNote 实机测试；实验性格式请先在空白文档验收。\r\n\r\n" +
             "本项目为非官方工具，与Clarivate及各期刊、出版社无隶属关系。",
             "使用帮助",
             MessageBoxButtons.OK,
@@ -599,6 +630,35 @@ internal sealed class MainForm : Form
         {
             UseWaitCursor = false;
         }
+    }
+
+    private void UpdatePathLabel() => _pathLabel.Text = $"安装目录（{(_settings.DirectoryConfirmed ? "用户已确认" : "待核对 EndNote 设置")}）：{_service.TargetDirectory}";
+
+    private void ConfigureDirectory()
+    {
+        using var dialog = new DirectoryDialog(_settings);
+        if (dialog.ShowDialog(this) != DialogResult.OK) return;
+        var settings = new AppSettings { StyleDirectory = dialog.SelectedDirectory, DirectoryConfirmed = dialog.DirectoryConfirmed };
+        settings.Save();
+        _settings = settings;
+        _service = new StyleService(settings.StyleDirectory);
+        UpdatePathLabel();
+        RefreshGrid();
+    }
+
+    private bool EnsureDirectory()
+    {
+        if (_settings.DirectoryConfirmed) return true;
+        ConfigureDirectory();
+        if (_settings.DirectoryConfirmed) return true;
+        MessageBox.Show(this, "请先核对 EndNote 的 Styles Folder，并在安装位置窗口勾选确认，再安装。", "请确认样式位置");
+        return false;
+    }
+
+    private void OpenBackups()
+    {
+        OpenTargetDirectory();
+        MessageBox.Show(this, "CN-Academic-Backup-* 是覆盖前备份，CN-Academic-Removed-* 是卸载备份。\n\n恢复方法：先关闭 EndNote，将需要恢复的 ENS 复制回当前安装目录。同名文件请另存备份后再覆盖。\n工具箱不会自动恢复安装记录；恢复后的文件将按保护规则保留。", "备份与恢复");
     }
 
     private bool Confirm(string message) => MessageBox.Show(
