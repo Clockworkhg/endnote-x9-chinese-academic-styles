@@ -18,3 +18,9 @@
 The ENS binary-generation work began from a publicly distributed university-customized Chicago 17th footnote style. The project substantially rewrites templates, metadata, list settings, repeated-citation behavior, and bibliography behavior. EndNote and Cite While You Write are Clarivate trademarks. No affiliation with or endorsement by Clarivate is claimed.
 
 Journal, university, publisher, and standard names are used only to identify the public citation rules used as references. No official endorsement is claimed.
+
+## China Communication University public guidance
+
+- Source: https://scim.cuc.edu.cn/2025/1207/c2673a264878/page.htm
+- Use: public footnote requirements and bibliographic examples informed the experimental CUC humanities profile.
+- Status: the profile is an independent, unofficial adaptation and is not a university-wide certified style.

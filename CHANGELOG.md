@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.0 - 2026-09-04
+
+- Expanded the library from 18 to 47 EndNote footnote styles.
+- Covered all 46 `class="note"` styles in the pinned `zotero-chinese/styles` catalog revision.
+- Added an experimental China Communication University humanities footnote profile based on public CUC guidance.
+- Added source examples for every style and a reproducible upstream note-style snapshot.
+- Made the native UI and embedded-resource validation use the expanded manifest safely.
+
 ## 0.3.0 - 2026-09-04
 
 - Replaced the PowerShell WinForms startup chain with a native .NET 8 Windows executable.
