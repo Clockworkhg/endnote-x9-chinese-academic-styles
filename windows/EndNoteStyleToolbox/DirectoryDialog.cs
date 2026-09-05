@@ -2,7 +2,8 @@ namespace EndNoteStyleToolbox;
 
 internal sealed class DirectoryDialog : Form
 {
-    private readonly ComboBox _paths = new() { Dock = DockStyle.Top, DropDownStyle = ComboBoxStyle.DropDown, DisplayMember = nameof(DirectoryCandidate.Path), Height = 36 };
+    private readonly TextBox _paths = new() { Dock = DockStyle.Fill };
+    private readonly ComboBox _candidates = new() { Dock = DockStyle.Fill, DropDownStyle = ComboBoxStyle.DropDownList, DisplayMember = nameof(DirectoryCandidate.Path), DropDownWidth = 700 };
     private readonly Label _status = new() { Dock = DockStyle.Fill, Padding = new Padding(0, 18, 0, 0) };
     private readonly CheckBox _confirmed = new() { Text = "我已核对：这与 EndNote 的 Styles Folder 设置一致", AutoSize = true };
     public string SelectedDirectory { get; private set; } = "";
@@ -22,7 +23,14 @@ internal sealed class DirectoryDialog : Form
         root.RowStyles.Add(new RowStyle(SizeType.Absolute, 35));
         root.RowStyles.Add(new RowStyle(SizeType.Absolute, 40));
         root.Controls.Add(new Label { Text = "先在 EndNote 的 Edit → Preferences → Folder Locations 核对 Styles Folder。\n选择目录不会修改 EndNote 自身设置；自动检测结果需要核对。", Dock = DockStyle.Fill }, 0, 0);
-        root.Controls.Add(_paths, 0, 1);
+        var picker = new TableLayoutPanel { Dock = DockStyle.Fill, ColumnCount = 2, RowCount = 1, Margin = Padding.Empty };
+        picker.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 70));
+        picker.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 30));
+        picker.Controls.Add(_paths, 0, 0);
+        picker.Controls.Add(_candidates, 1, 0);
+        _paths.PlaceholderText = "输入或选择 Styles 文件夹路径";
+        _candidates.AccessibleName = "自动检测到的候选目录";
+        root.Controls.Add(picker, 0, 1);
         root.Controls.Add(_status, 0, 2);
         root.Controls.Add(_confirmed, 0, 3);
         var actions = new FlowLayoutPanel { Dock = DockStyle.Fill, AutoScroll = true };
@@ -49,11 +57,14 @@ internal sealed class DirectoryDialog : Form
         root.Controls.Add(actions, 0, 4);
         Controls.Add(root);
         _paths.TextChanged += (_, _) => { _confirmed.Checked = false; _status.Text = "手动指定位置。\n尚未确认 EndNote 是否读取此位置。"; };
-        _paths.SelectionChangeCommitted += (_, _) =>
+        _candidates.SelectedIndexChanged += (_, _) =>
         {
             _confirmed.Checked = false;
-            if (_paths.SelectedItem is DirectoryCandidate candidate)
+            if (_candidates.SelectedItem is DirectoryCandidate candidate)
+            {
+                _paths.Text = candidate.Path;
                 _status.Text = $"来源：{candidate.Source}\n请与 EndNote 的 Styles Folder 核对。";
+            }
         };
         _paths.Text = settings.StyleDirectory ?? StyleDirectoryService.DefaultDirectory;
         _confirmed.Checked = settings.DirectoryConfirmed;
@@ -63,10 +74,10 @@ internal sealed class DirectoryDialog : Form
     private void Scan()
     {
         var previous = CurrentPath();
-        _paths.Items.Clear();
-        foreach (var candidate in StyleDirectoryService.Discover()) _paths.Items.Add(candidate);
+        _candidates.Items.Clear();
+        foreach (var candidate in StyleDirectoryService.Discover()) _candidates.Items.Add(candidate);
         _paths.Text = previous;
-        _status.Text = $"找到 {_paths.Items.Count} 个候选位置，请展开列表选择。原路径未自动改变。";
-        _paths.DroppedDown = true;
+        _status.Text = $"找到 {_candidates.Items.Count} 个候选位置，请在右侧列表选择。也可直接编辑左侧路径。";
+        _candidates.DroppedDown = true;
     }
 }

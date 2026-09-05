@@ -36,8 +36,10 @@ internal static class SelfTestRunner
                 picker.SelectedIndex = 0;
                 Application.DoEvents();
                 Require(picker.Text == candidatePath, "Directory picker displays a clean path without source annotation.", checks);
-                picker.Text = candidatePath + "-manual";
-                Require(picker.Text == candidatePath + "-manual", "Directory candidate remains manually editable.", checks);
+                var pathEditor = Descendants(dialog).OfType<TextBox>().Single();
+                Require(pathEditor.Text == candidatePath, "Selecting a candidate fills the separate path editor.", checks);
+                pathEditor.Text = candidatePath + "-manual";
+                Require(pathEditor.Text == candidatePath + "-manual", "Directory candidate remains manually editable.", checks);
                 dialog.Close();
             }
             using (var dialog = new UpdateDialog())
