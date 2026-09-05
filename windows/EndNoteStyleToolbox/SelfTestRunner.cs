@@ -12,7 +12,7 @@ internal static class SelfTestRunner
         try
         {
             var styles = EmbeddedAssets.LoadManifest();
-            Require(styles.Count == 18, "Manifest contains 18 styles.", checks);
+            Require(styles.Count == 47, "Manifest contains all 46 upstream note styles plus the CUC profile.", checks);
 
             ApplicationConfiguration.Initialize();
             using (var form = new MainForm())
@@ -22,8 +22,8 @@ internal static class SelfTestRunner
             }
 
             var resources = EmbeddedAssets.ResourceNames();
-            Require(resources.Count(name => name.EndsWith(".ens", StringComparison.OrdinalIgnoreCase)) == 18,
-                "Assembly contains 18 ENS resources.", checks);
+            Require(resources.Count(name => name.EndsWith(".ens", StringComparison.OrdinalIgnoreCase)) == styles.Count,
+                $"Assembly contains {styles.Count} ENS resources.", checks);
 
             foreach (var style in styles)
             {
@@ -60,7 +60,7 @@ internal static class SelfTestRunner
             WriteReport(reportPath, new
             {
                 status = "passed",
-                version = "0.3.0",
+                version = "0.4.0",
                 os = Environment.OSVersion.ToString(),
                 runtime = Environment.Version.ToString(),
                 architecture = Environment.Is64BitProcess ? "x64" : "x86",
@@ -73,7 +73,7 @@ internal static class SelfTestRunner
             WriteReport(reportPath, new
             {
                 status = "failed",
-                version = "0.3.0",
+                version = "0.4.0",
                 error = exception.ToString(),
                 checks
             });

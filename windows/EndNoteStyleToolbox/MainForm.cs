@@ -76,7 +76,7 @@ internal sealed class MainForm : Form
         _statusLabel.Text = "就绪";
         statusStrip.Items.Add(_statusLabel);
         statusStrip.Items.Add(new ToolStripStatusLabel { Spring = true });
-        statusStrip.Items.Add(new ToolStripStatusLabel("v0.3.0 · 64位 · 无需管理员权限"));
+        statusStrip.Items.Add(new ToolStripStatusLabel("v0.4.0 · 64位 · 无需管理员权限"));
         Controls.Add(statusStrip);
     }
 
@@ -94,7 +94,7 @@ internal sealed class MainForm : Form
         var subtitle = new Label
         {
             AutoSize = true,
-            Text = "18套中文学术脚注格式 · 一键安装、检测与可恢复卸载",
+            Text = $"{_styles.Count}套中文学术脚注格式 · 一键安装、检测与可恢复卸载",
             ForeColor = Color.FromArgb(82, 96, 119),
             Location = new Point(2, 46)
         };
@@ -492,7 +492,7 @@ internal sealed class MainForm : Form
 
     private void InstallAll()
     {
-        if (!Confirm("确定安装全部18套中文学术格式吗？\r\n\r\n同名文件将先自动备份。"))
+        if (!Confirm($"确定安装全部{_styles.Count}套中文学术格式吗？\r\n\r\n同名文件将先自动备份。"))
         {
             return;
         }
@@ -624,16 +624,19 @@ internal sealed class MainForm : Form
     private static string CategoryName(string family) => family switch
     {
         "css" => "综合人文社科",
-        "technical" => "综合与高校",
+        "technical" or "university_note" or "hunan_note" => "综合与高校",
+        "cuc" => "中国传媒大学",
         "publisher" => "出版社",
         "politics" => "政治学",
         "international" or "foreign_affairs" or "intl_politics" => "国际关系",
         "modern_ir" => "历史与国际关系",
         "history" => "历史学",
         "literature" => "文学",
+        "marxism" => "马克思主义",
         "news" => "新闻传播",
         "law_manual" or "law_review" => "法学",
-        "gbt2015" or "gbt2025" => "国家标准",
+        "gbt2015" or "gbt2025" or "gbt2015_clean" or "gbt2025_clean" => "国家标准",
+        "taiwan_note" => "繁体中文",
         _ => "其他"
     };
 }
