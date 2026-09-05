@@ -266,5 +266,426 @@
       "同6.",
       "同2：326-329."
     ]
+  },
+  {
+    "title": "中国传媒大学（人文社科脚注参考版）",
+    "source_dir": "中国传媒大学（人文社科脚注参考版）",
+    "source_url": "https://scim.cuc.edu.cn/2025/1207/c2673a264878/page.htm",
+    "examples": [
+      "崔功豪、魏清泉、陈宗兴：《区域分析与规划》，高等教育出版社，1999年，第15—16页。",
+      "作者：《文章题目》，《期刊名称》2025年第3期，第12—13页。",
+      "作者：《章节题目》，载编者主编：《文集题目》，出版社，2024年，第20—25页。",
+      "作者：《学位论文题目》，中国传媒大学博士学位论文，2025年，第76页。",
+      "作者：《网页题目》，网站名称，完整网址，2026年9月4日访问。"
+    ]
+  },
+  {
+    "title": "GB-T-7714—2015（注释，双语，姓名不大写，无URL、DOI，重复引用不省略）",
+    "source_dir": "GB-T-7714—2015（注释，双语，姓名不大写，无URL、DOI，重复引用不省略）",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/GB-T-7714—2015（注释，双语，姓名不大写，无URL、DOI，重复引用不省略）",
+    "examples": [
+      "库恩. 科学革命的结构：第4版[M]. 金吾伦，胡新和，译. 2 版. 北京：北京大学出版社，2012.",
+      "Fan X，Sommers C H. Food irradiation research and technology[M]. 2nd ed. Ames, Iowa：Blackwell Publishing，2013：25-26.",
+      "贾东琴，柯平. 面向数字素养的高校图书馆数字服务体系研究[C]//中国图书馆学会. 中国图书馆学会年会论文集：2011年卷. 北京：国家图书馆出版社，2011：45-52.",
+      "Fourney M E. Advances in holographic photoelasticity[C]//Symposium on Applications of Holography in Mechanics, August 23-25, 1971, University of Southern California, Los Angeles, California. New York：ASME，c1971：17-38.",
+      "武丽丽，华一新，张亚军，等. “北斗一号”监控管理网设计与实现[J]. 测绘科学，2008，33（5）：8-9.",
+      "Myburg A A，Grattapaglia D，Tuskan G A，et al. The genome of Eucalyptus grandis[J]. Nature，2014，510：356-362.",
+      "Myburg A A，Grattapaglia D，Tuskan G A，et al. The genome of Eucalyptus grandis[J]. Nature，2014，510：356-362.",
+      "Myburg A A，Grattapaglia D，Tuskan G A，et al. The genome of Eucalyptus grandis[J]. Nature，2014，510：357."
+    ]
+  },
+  {
+    "title": "GB-T-7714—2025（注释，双语，无URL，无DOI，重复引用不省略）",
+    "source_dir": "GB-T-7714—2025（注释，双语，无URL，无DOI，重复引用不省略）",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/GB-T-7714—2025（注释，双语，无URL，无DOI，重复引用不省略）",
+    "examples": [
+      "扬奎斯特，萨金特. 递归宏观经济理论[M]. 杨斌，王忠玉，陈彦斌，严高剑，译. 2 版. 北京：中国人民大学出版社，2010：798.",
+      "Praetzellis A. Death by theory: a tale of mystery and archaeological theory[M]. Rev. ed. Rowman & Littlefield Publishing Group, Inc.，2011：13.",
+      "于潇，刘义，柴跃廷，孙宏波. 互联网药品可信交易环境中主体资质审核备案模式[J]. 清华大学学报（自然科学版），2012，52（11）：1518-1523.",
+      "Veen P H van der，Muller M，Vincken K L，Witkamp T D，Mali W P T M，van der Graaf Y，Geerlings M I，SMART-MR Study Group. Longitudinal changes in brain volumes and cerebrovascular lesions on MRI in patients with manifest arterial disease: the SMART-MR study[J]. Journal of the Neurological Sciences，2014，337（1/2）：112-118.",
+      "汪学军. 中国农业转基因生物研发进展与安全管理[C]//国家环境保护总局生物安全管理办公室. 中国国家生物安全框架实施国际合作项目研讨会论文集. 北京：中国环境科学出版社，2005：22-25.",
+      "Wang S. Application of improved SOM neural network in intelligent auditing of hospital financial vouchers[C]//2022 6th Asian Conference on Artificial Intelligence Technology，2022：2.",
+      "Wang S. Application of improved SOM neural network in intelligent auditing of hospital financial vouchers[C]//2022 6th Asian Conference on Artificial Intelligence Technology，2022：2.",
+      "Praetzellis A. Death by theory: a tale of mystery and archaeological theory[M]. Rev. ed. Rowman & Littlefield Publishing Group, Inc.，2011：326-329."
+    ]
+  },
+  {
+    "title": "世界经济与政治论坛",
+    "source_dir": "世界经济与政治论坛",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/世界经济与政治论坛",
+    "examples": [
+      "扬奎斯特, 萨金特. 递归宏观经济理论[M]. 杨斌, 王忠玉, 陈彦斌, 等, 译. 2 版. 北京: 中国人民大学出版社, 2010: 798.",
+      "Adrian Praetzellis. Death by theory: a tale of mystery and archaeological theory[M]. Rev. ed. Rowman & Littlefield Publishing Group, Inc., 2011: 13.",
+      "于潇, 刘义, 柴跃廷, 等. 互联网药品可信交易环境中主体资质审核备案模式[J]. 清华大学学报（自然科学版）, 2012, 52(11): 1518-1523.",
+      "Pieternella H. van der Veen, Majon Muller, Koen L. Vincken, et al. Longitudinal changes in brain volumes and cerebrovascular lesions on MRI in patients with manifest arterial disease: the SMART-MR study[J]. Journal of the Neurological Sciences, 2014, 337(1/2): 112-118.",
+      "汪学军. 中国农业转基因生物研发进展与安全管理[C]//国家环境保护总局生物安全管理办公室. 中国国家生物安全框架实施国际合作项目研讨会论文集. 北京: 中国环境科学出版社, 2005: 22-25.",
+      "Shanshan Wang. Application of improved SOM neural network in intelligent auditing of hospital financial vouchers[C]//2022 6th Asian Conference on Artificial Intelligence Technology. 2022: 2.",
+      "Shanshan Wang. Application of improved SOM neural network in intelligent auditing of hospital financial vouchers[C]//2022 6th Asian Conference on Artificial Intelligence Technology. 2022: 2.",
+      "Adrian Praetzellis. Death by theory: a tale of mystery and archaeological theory[M]. Rev. ed. Rowman & Littlefield Publishing Group, Inc., 2011: 326-329."
+    ]
+  },
+  {
+    "title": "中国现代文学研究丛刊",
+    "source_dir": "中国现代文学研究丛刊",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/中国现代文学研究丛刊",
+    "examples": [
+      "扬奎斯特、萨金特，《递归宏观经济理论》，杨斌等译，2中国人民大学出版社2010年版。",
+      "Adrian Praetzellis, Death by theory: a tale of mystery and archaeological theoryRowman & Littlefield Publishing Group, Inc., 2011.",
+      "于潇等：《互联网药品可信交易环境中主体资质审核备案模式》，《清华大学学报（自然科学版）》2012年第11期。",
+      "Pieternella H. van der Veen et al., “Longitudinal changes in brain volumes and cerebrovascular lesions on MRI in patients with manifest arterial disease: the SMART-MR study,” Journal of the Neurological Sciences, Vol. 337, No. 1/2, 2014, pp. 112—118.",
+      "汪学军：《中国农业转基因生物研发进展与安全管理》，2005年。",
+      "Shanshan Wang, Shanshan Wang, “Application of improved SOM neural network in intelligent auditing of hospital financial vouchers,” Changzhou, China, December 2022, p. 2.",
+      "Ibid.",
+      "Adrian Praetzellis, Death by theory: a tale of mystery and archaeological theory, pp. 326—329."
+    ]
+  },
+  {
+    "title": "关东学刊",
+    "source_dir": "关东学刊",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/关东学刊",
+    "examples": [
+      "袁良骏编：《丁玲研究资料》，天津：天津人民出版社，1982年，第246页。",
+      "[日]实藤惠秀：《中国人留学日本史》，谭汝谦、林启彦译，香港：中文大学出版社，1982年，第11-12页。",
+      "吉登斯：《超越左与右——激进政治的未来》，李惠斌译，北京：社会科学文献出版社，2009年，第21页。",
+      "丁建定：《西方国家社会保障制度史》，北京：高等教育出版社，2016年，第385页。",
+      "吉登斯：《超越左与右——激进政治的未来》，李惠斌译，第21页。",
+      "杜威·佛克马：《走向新世界主义》，王宁、薛晓源主编：《全球化与后殖民批评》，北京：中央编辑出版社，1999年，第247-266页。",
+      "鲁迅：《中国小说的历史变迁》，《鲁迅全集》（第9册），北京：人民文学出版社，1981年，第325页。",
+      "司马迁：《史记》卷二十八《封禅书》，北京：中华书局，1982年，第1394页。"
+    ]
+  },
+  {
+    "title": "华东理工大学-社会与公共管理学院",
+    "source_dir": "华东理工大学-社会与公共管理学院",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/华东理工大学-社会与公共管理学院",
+    "examples": [
+      "赵景深：《文坛忆旧》，上海：北新书局1948年版。",
+      "鲁迅：《中国小说的历史的变迁》，《鲁迅全集》第9册，北京：人民文学出版社，1981年版。",
+      "Peter Brooks, Troubling Confessions: Speaking Guilt in Law and Literature, Chicago: University of Chicago Press, 2000.",
+      "R S Schfield, The Impact of Scarcity and Plenty on Population Change in England, in R I Rotberg and T K Rabb, eds., Hunger and History: The Impact of Changing Food Production and Consumption Pattern on Society, Cambridge, Mass.: Cambridge University Press, 1983, pp.55-88.",
+      "赵景深：《文坛忆旧》，上海：北新书局1948年版，第24页。",
+      "鲁迅：《中国小说的历史的变迁》，《鲁迅全集》第9册，北京：人民文学出版社，1981年版，第326页。",
+      "Peter Brooks, Troubling Confessions: Speaking Guilt in Law and Literature, Chicago: University of Chicago Press, 2000, p.24.",
+      "R S Schfield, The Impact of Scarcity and Plenty on Population Change in England, in R I Rotberg and T K Rabb, eds., Hunger and History: The Impact of Changing Food Production and Consumption Pattern on Society, Cambridge, Mass.: Cambridge University Press, 1983, p.326."
+    ]
+  },
+  {
+    "title": "南京农业大学（人文社科类，脚注）",
+    "source_dir": "南京农业大学（人文社科类，脚注）",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/南京农业大学（人文社科类，脚注）",
+    "examples": [
+      "汪昂．增订本草备要：四卷［M］．刻本．京都：老二酉堂，1881．",
+      "张伯伟．全唐五代诗格汇考［M］．南京：江苏古籍出版社，2002：288．",
+      "李炳穆．理想的图书馆员和信息专家的素质与形象［J］．图书情报工作，2000，2（6）：5-8．",
+      "杨洪升．四库馆私家抄校书考略［J］．文献，2013（1）：56-75．",
+      "CRAWFORD W, GORMAN M. Future libraries: Dreams, madness, & reality[M]. Chicago: American Library Association, 1995.",
+      "International Federation of Library Association and Institutions. Names of persons: National usages for entry in catalogues[M]. 3rd ed. London: IFLA International Office for UBC, 1977.",
+      "DES MARAIS D J, STRAUSS H, SUMMONS R E, et al. Carbon isotope evidence for the stepwise oxidation of the Proterozoic environment[J]. Nature, 1992, 359(6396): 605-609.",
+      "World Health Organization. Factors regulating the immune response: Report of WHO Scientific Group[R]. Geneva: WHO, 1970."
+    ]
+  },
+  {
+    "title": "南京理工大学学报（社会科学版）",
+    "source_dir": "南京理工大学学报（社会科学版）",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/南京理工大学学报（社会科学版）",
+    "examples": [
+      "亨利·列斐伏尔：《日常生活批判》（第1卷），叶齐茂、倪晓晖译，北京：社会科学文献出版社，2018年，第205—206页。",
+      "刘怀玉：《现代性的平庸与神奇：列斐伏尔日常生活批判哲学的文本学解读》，北京：北京师范大学出版社，2018年，第433页。",
+      "Rob Shields, Lefebvre, Love, and Struggle: Spatial Dialectics, London: Routledge, 1999, p.100.",
+      "习近平：《在哲学社会科学工作座谈会上的讲话》，《人民日报》2016年5月19日，第2版。",
+      "韩立岩、陈建宇、姚婷：《北斗走出去，数字赋能“一带一路”》，《经济与管理研究》2021年第5期。",
+      "Andrew G. Walder, “Local Governments as Industrial Firms: An Organizational Analysis of China’s Transitional Economy,” American Journal of Sociology, 101(2), 1995.",
+      "张树华：《开辟新时代政治学研究新境界》，中国社会科学网，https://baijiahao.baidu.com/s?id=172415532686831880&wfr=spider&for=pc，2022年2月8日访问。"
+    ]
+  },
+  {
+    "title": "南方民族考古",
+    "source_dir": "南方民族考古",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/南方民族考古",
+    "examples": [
+      "扬奎斯特、萨金特：《递归宏观经济理论》（第2版），杨斌、王忠玉、陈彦斌、严高剑译，北京：中国人民大学出版社，2010年。",
+      "Adrian Praetzellis, Death by Theory: A Tale of Mystery and Archaeological Theory, Rowman & Littlefield Publishing Group, Inc., 2011.",
+      "于潇、刘义、柴跃廷、孙宏波：《互联网药品可信交易环境中主体资质审核备案模式》，《清华大学学报（自然科学版）》第52卷第11期，2012年。",
+      "Pieternella H. van der Veen, Majon Muller, Koen L. Vincken, Theo D. Witkamp, Willem P. T. M. Mali, Yolanda van der Graaf, Mirjam I. Geerlings, and SMART-MR Study Group, “Longitudinal changes in brain volumes and cerebrovascular lesions on MRI in patients with manifest arterial disease: the SMART-MR study”, Journal of the Neurological Sciences, vol. 337:1/2 (2014), pp.112-118.",
+      "汪学军：《中国农业转基因生物研发进展与安全管理》，国家环境保护总局生物安全管理办公室编《中国国家生物安全框架实施国际合作项目研讨会论文集》，北京：中国环境科学出版社，2005年。",
+      "Shanshan Wang, “Application of improved SOM neural network in intelligent auditing of hospital financial vouchers”, “2022 6th Asian Conference on Artificial Intelligence Technology” paper, Changzhou, China, December 2022.",
+      "Shanshan Wang, “Application of improved SOM neural network in intelligent auditing of hospital financial vouchers”, “2022 6th Asian Conference on Artificial Intelligence Technology” paper, Changzhou, China, December 2022.",
+      "Adrian Praetzellis, Death by Theory: A Tale of Mystery and Archaeological Theory, Rowman & Littlefield Publishing Group, Inc., 2011, pp.326-329."
+    ]
+  },
+  {
+    "title": "国际关系研究",
+    "source_dir": "国际关系研究",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/国际关系研究",
+    "examples": [
+      "扬奎斯特、萨金特著，杨斌等译：《递归宏观经济理论》2，中国人民大学出版社2010年版。",
+      "Adrian Praetzellis, Death by theory: a tale of mystery and archaeological theory, Rowman & Littlefield Publishing Group, Inc., 2011.",
+      "于潇等：《互联网药品可信交易环境中主体资质审核备案模式》，《清华大学学报（自然科学版）》2012年第11期，第1518～1523页。",
+      "Pieternella H. van der Veen et al., “Longitudinal changes in brain volumes and cerebrovascular lesions on MRI in patients with manifest arterial disease: the SMART-MR study,” Journal of the Neurological Sciences, Vol. 337, No. 1/2, 2014, pp. 112～118.",
+      "汪学军：《中国农业转基因生物研发进展与安全管理》，2005年。",
+      "Shanshan Wang, Shanshan Wang, “Application of improved SOM neural network in intelligent auditing of hospital financial vouchers,” Changzhou, China, December 2022, p. 2.",
+      "Ibid.",
+      "Adrian Praetzellis, Death by theory: a tale of mystery and archaeological theory, Rowman & Littlefield Publishing Group, Inc., 2011, pp. 326～329."
+    ]
+  },
+  {
+    "title": "国际安全研究",
+    "source_dir": "国际安全研究",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/国际安全研究",
+    "examples": [
+      "扬奎斯特、萨金特：《递归宏观经济理论》2，杨斌等译，北京：中国人民大学出版社2010年版。",
+      "Adrian Praetzellis, Death by theory: a tale of mystery and archaeological theory, Rowman & Littlefield Publishing Group, Inc., 2011.",
+      "于潇等：《互联网药品可信交易环境中主体资质审核备案模式》，载《清华大学学报（自然科学版）》，2012年第11期，第1518-1523页。",
+      "Pieternella H. van der Veen et al., “Longitudinal changes in brain volumes and cerebrovascular lesions on MRI in patients with manifest arterial disease: the SMART-MR study,” Journal of the Neurological Sciences, Vol. 337, No. 1/2 (February 2014), pp. 112-118.",
+      "汪学军：《中国农业转基因生物研发进展与安全管理》，2005年，第22-25页。",
+      "Shanshan Wang, “Application of improved SOM neural network in intelligent auditing of hospital financial vouchers,” Changzhou, China, December 2022, p. 2.",
+      "Ibid.",
+      "Adrian Praetzellis, Death by theory: a tale of mystery and archaeological theory, pp. 326-329."
+    ]
+  },
+  {
+    "title": "国际法研究",
+    "source_dir": "国际法研究",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/国际法研究",
+    "examples": [
+      "周鲠生：《国际法》，商务印书馆1976年版，第2页。",
+      "王铁崖主编：《国际法》，法律出版社1995年版，第10页。",
+      "Malcolm N. Shaw, International Law, (Cambridge University Press, 6th edn, 2008), p. 224.",
+      "徐宏：《人类命运共同体与国际法》，载《国际法研究》2018年第5期，第5页。",
+      "James Crawford, “Revising the Draft Articles on State Responsibility”, (1999) 10 European Journal of International Law 435, p. 440.",
+      "Thomas Buergenthal, “To Respect and to Ensure: State Obligations and Permissible Derogations”, in L. Henkin ed., The International Bill of Rights: The Covenant on Civil and Political Rights, (Columbia University Press, 1981), pp. 75-76.",
+      "[英]劳特派特：《奥本海国际法》（第8版上卷），王铁崖、陈体强译，商务印书馆1971年版，第102-104页。",
+      "刘楠来：《运用国际海洋法建设海洋强国》，载《经济参考报》2013年7月23日，第8版。"
+    ]
+  },
+  {
+    "title": "外国文学评论",
+    "source_dir": "外国文学评论",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/外国文学评论",
+    "examples": [
+      "扬奎斯特、萨金特《递归宏观经济理论》（第2版），杨斌、王忠玉、陈彦斌、严高剑译，北京：中国人民大学出版社，2010年。",
+      "Adrian Praetzellis, Death by Theory: A Tale of Mystery and Archaeological Theory, Rowman & Littlefield Publishing Group, Inc., 2011.",
+      "于潇、刘义、柴跃廷、孙宏波《互联网药品可信交易环境中主体资质审核备案模式》，载《清华大学学报（自然科学版）》2012年第11期。",
+      "Pieternella H. van der Veen, Majon Muller, Koen L. Vincken, Theo D. Witkamp, Willem P. T. M. Mali, Yolanda van der Graaf, Mirjam I. Geerlings, and SMART-MR Study Group, “Longitudinal Changes in Brain Volumes and Cerebrovascular Lesions on MRI in Patients with Manifest Arterial Disease: The SMART-MR Study”, in Journal of the Neurological Sciences, 337.1/2 (2014), pp. 112-118.",
+      "汪学军《中国农业转基因生物研发进展与安全管理》，收入国家环境保护总局生物安全管理办公室编：《中国国家生物安全框架实施国际合作项目研讨会论文集》，北京：中国环境科学出版社，2005年。",
+      "Shanshan Wang, “Application of Improved SOM Neural Network in Intelligent Auditing of Hospital Financial Vouchers”, “2022 6th Asian Conference on Artificial Intelligence Technology” paper, Changzhou, China, December 2022.",
+      "Shanshan Wang, “Application of Improved SOM Neural Network in Intelligent Auditing of Hospital Financial Vouchers”.",
+      "Adrian Praetzellis, Death by Theory, pp. 326-329."
+    ]
+  },
+  {
+    "title": "太平洋学报",
+    "source_dir": "太平洋学报",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/太平洋学报",
+    "examples": [
+      "扬奎斯特、萨金特著，杨斌、王忠玉、陈彦斌、严高剑译：《递归宏观经济理论》（第2版），中国人民大学出版社，2010年版，第798页。",
+      "Adrian Praetzellis, Death by Theory: A Tale of Mystery and Archaeological Theory, Rowman & Littlefield Publishing Group, Inc., 2011, p.13.",
+      "于潇、刘义、柴跃廷、孙宏波：“互联网药品可信交易环境中主体资质审核备案模式”，《清华大学学报（自然科学版）》，2012年第11期。",
+      "Pieternella H. van der Veen, Majon Muller, Koen L. Vincken, Theo D. Witkamp, Willem P. T. M. Mali, Yolanda van der Graaf, Mirjam I. Geerlings, and SMART-MR Study Group, “Longitudinal Changes in Brain Volumes and Cerebrovascular Lesions on MRI in Patients with Manifest Arterial Disease: The SMART-MR Study”, Journal of the Neurological Sciences, Vol.337, No.1/2, 2014, pp.112-118.",
+      "汪学军：《中国农业转基因生物研发进展与安全管理》，国家环境保护总局生物安全管理办公室主编：《中国国家生物安全框架实施国际合作项目研讨会论文集》，中国环境科学出版社，2005年，第22—25页。",
+      "Shanshan Wang, “Application of Improved SOM Neural Network in Intelligent Auditing of Hospital Financial Vouchers”, 2022, p.2.",
+      "Shanshan Wang, “Application of Improved SOM Neural Network in Intelligent Auditing of Hospital Financial Vouchers”, 2022, p.2.",
+      "Adrian Praetzellis, Death by Theory: A Tale of Mystery and Archaeological Theory, Rowman & Littlefield Publishing Group, Inc., 2011, pp.326-329."
+    ]
+  },
+  {
+    "title": "学术评论",
+    "source_dir": "学术评论",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/学术评论",
+    "examples": [
+      "海德格尔：《康德与形而上学疑难》，王庆节译，商务印书馆2018年版。",
+      "Allen W. Wood, Kant, Blackwell Publishing Ltd., 2005: 151.",
+      "米歇尔·福柯：《知识考古学》，董树宝译，生活·读书·新知三联书店2021年版，第157—163页。",
+      "刘成纪：《我所理解的艺术观念史》，《中国图书评论》2018年第9期。",
+      "汉斯-格奥尔格·伽达默尔：《论思想之开端》，张柯译，《中国现象学与哲学评论》2019年第2辑。",
+      "鲍姆嘉藤：《美学》，简明、王旭晓译，文化艺术出版社1987年版，第126页。",
+      "Alexander Gottlieb Baumgarten, Ästhetik, Teil 1, trans. Dagmar Mirbach, Dagmar Mirbach, Felix Meiner Verlag, 2007: 20.",
+      "康德：《判断力批判》，李秋零译，中国人民大学出版社2011年版，第175页。"
+    ]
+  },
+  {
+    "title": "当代亚太",
+    "source_dir": "当代亚太",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/当代亚太",
+    "examples": [
+      "扬奎斯特、萨金特：《递归宏观经济理论》2，杨斌等译，中国人民大学出版社2010年版。",
+      "Adrian Praetzellis, Death by theory: a tale of mystery and archaeological theory, Rowman & Littlefield Publishing Group, Inc., 2011.",
+      "于潇等：《互联网药品可信交易环境中主体资质审核备案模式》，载《清华大学学报（自然科学版）》2012年第11期，第1518～1523页。",
+      "Pieternella H. van der Veen et al., “Longitudinal changes in brain volumes and cerebrovascular lesions on MRI in patients with manifest arterial disease: the SMART-MR study,” Journal of the Neurological Sciences, Vol. 337, No. 1/2, 2014, pp. 112～118.",
+      "汪学军：《中国农业转基因生物研发进展与安全管理》，2005年，第22～25页。",
+      "Shanshan Wang, “Application of improved SOM neural network in intelligent auditing of hospital financial vouchers,” Changzhou, China, December 2022, p. 2.",
+      "Ibid.",
+      "Adrian Praetzellis, Death by theory: a tale of mystery and archaeological theory, pp. 326～329."
+    ]
+  },
+  {
+    "title": "探索与争鸣",
+    "source_dir": "探索与争鸣",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/探索与争鸣",
+    "examples": [
+      "扬奎斯特、萨金特：《递归宏观经济理论》，杨斌等译，北京：中国人民大学出版社，2010年",
+      "Adrian Praetzellis, Death by theory: a tale of mystery and archaeological theory, Rowman & Littlefield Publishing Group, Inc., 2011",
+      "于潇等：《互联网药品可信交易环境中主体资质审核备案模式》，《清华大学学报（自然科学版）》2012年第11期。",
+      "Pieternella H. van der Veen et al., “Longitudinal changes in brain volumes and cerebrovascular lesions on MRI in patients with manifest arterial disease: the SMART-MR study,” Journal of the Neurological Sciences, Vol. 337, No. 1/2(2014), pp. 112—118.",
+      "汪学军国家环境保护总局生物安全管理办公室主编：《中国农业转基因生物研发进展与安全管理》北京：中国环境科学出版社，2005年",
+      "Shanshan Wang, “Application of improved SOM neural network in intelligent auditing of hospital financial vouchers,” (2022), p. 2.",
+      "Ibid.",
+      "Adrian Praetzellis, Death by theory: a tale of mystery and archaeological theory, Rowman & Littlefield Publishing Group, Inc., 2011, p. 326—329."
+    ]
+  },
+  {
+    "title": "教育史研究",
+    "source_dir": "教育史研究",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/教育史研究",
+    "examples": [
+      "布鲁纳著，邵瑞珍、张渭城译：《布鲁纳教育论著选》，人民教育出版社，2018年，第35—36页。",
+      "廖哲勋：《实事求是地评价普通高中新课程改革》，《课程·教材·教法》2010年第9期。",
+      "Burton J. Bledstein. The Culture of Professionalism: The Middle Class and the Development of Higher Education in America. New York: W. W. Norton & Company, Inc. 1976. pp. 33-39.",
+      "Alexander J. Inglis. The Socialization of the High School. Teachers College Record, 1915, 16(3). p. 216."
+    ]
+  },
+  {
+    "title": "文艺争鸣",
+    "source_dir": "文艺争鸣",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/文艺争鸣",
+    "examples": [
+      "扬奎斯特、萨金特，《递归宏观经济理论》，杨斌等译2，中国人民大学出版社，2010年版。",
+      "Adrian Praetzellis, Death by theory: a tale of mystery and archaeological theoryRowman & Littlefield Publishing Group, Inc., 2011.",
+      "于潇等：《互联网药品可信交易环境中主体资质审核备案模式》，《清华大学学报（自然科学版）》2012年第11期。",
+      "Pieternella H. van der Veen et al., “Longitudinal changes in brain volumes and cerebrovascular lesions on MRI in patients with manifest arterial disease: the SMART-MR study,” Journal of the Neurological Sciences, Vol. 337, No. 1/2, 2014, pp. 112—118.",
+      "汪学军：《中国农业转基因生物研发进展与安全管理》，2005年。",
+      "Shanshan Wang, Shanshan Wang, “Application of improved SOM neural network in intelligent auditing of hospital financial vouchers,” Changzhou, China, December 2022, p. 2.",
+      "Ibid.",
+      "Adrian Praetzellis, Death by theory: a tale of mystery and archaeological theory, pp. 326—329."
+    ]
+  },
+  {
+    "title": "法学引注手册（多语言）",
+    "source_dir": "法学引注手册（多语言）",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/法学引注手册（多语言）",
+    "examples": [
+      "王名扬：《美国行政法》，北京大学出版社2007年版。",
+      "同上注，第18页。",
+      "季卫东：《法律程序的意义：对中国法制建设的另一种思考》，载《中国社会科学》1993年第1期。",
+      "王保树：《股份有限公司机关构造中的董事和董事会》，载梁慧星主编：《民商法论丛》第1卷，法律出版社1994年版。",
+      "何海波：《判决书上网》，载《法制日报》2000年5月21日，第2版。",
+      "李松锋：《游走在上帝与凯撒之间：美国宪法第一修正案中的政教关系研究》，中国政法大学2015年博士学位论文。",
+      "包郑照诉苍南县人民政府强制拆除房屋案，浙江省高级人民法院民事判决书（1988）浙法民上字 7 号。",
+      "陆红霞诉南通市发改委政府信息公开案，载《最高人民法院公报》2015年第11期。"
+    ]
+  },
+  {
+    "title": "法学引注手册（多语言，重复引用不省略）",
+    "source_dir": "法学引注手册（多语言，重复引用不省略）",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/法学引注手册（多语言，重复引用不省略）",
+    "examples": [
+      "王名扬：《美国行政法》，北京大学出版社2007年版。",
+      "王名扬：《美国行政法》，北京大学出版社2007年版，第18页。",
+      "季卫东：《法律程序的意义：对中国法制建设的另一种思考》，载《中国社会科学》1993年第1期。",
+      "王保树：《股份有限公司机关构造中的董事和董事会》，载梁慧星主编：《民商法论丛》第1卷，法律出版社1994年版。",
+      "何海波：《判决书上网》，载《法制日报》2000年5月21日，第2版。",
+      "李松锋：《游走在上帝与凯撒之间：美国宪法第一修正案中的政教关系研究》，中国政法大学2015年博士学位论文。",
+      "包郑照诉苍南县人民政府强制拆除房屋案，浙江省高级人民法院民事判决书（1988）浙法民上字 7 号。",
+      "陆红霞诉南通市发改委政府信息公开案，载《最高人民法院公报》2015年第11期。"
+    ]
+  },
+  {
+    "title": "法学引注手册（第二版，多语言，重复引用不省略）",
+    "source_dir": "法学引注手册（第二版，多语言，重复引用不省略）",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/法学引注手册（第二版，多语言，重复引用不省略）",
+    "examples": [
+      "王名扬：《美国行政法》，中国法制出版社1995年版，第18页。",
+      "张新宝：《侵权责任法》（第5版），中国人民大学出版社2020年版，第73-75页。",
+      "高鸿钧、程汉大主编：《英美法原论》，北京大学出版社2013年版，第三章“英美判例法”。",
+      "［美］富勒：《法律的道德性》，郑戈译，商务印书馆2005年版。",
+      "季卫东：《法律程序的意义——对中国法制建设的另一种思考》，载《中国社会科学》1993年第1期，第91页。",
+      "王保树：《股份有限公司机关构造中的董事和董事会》，载梁慧星主编：《民商法论丛》第1卷，法律出版社1994年版，第110页。",
+      "［德］莱纳·沃尔夫：《风险法的风险》，陈霄、刘刚译，载刘刚主编：《风险规制：德国的理论与实践》，法律出版社2012年版。",
+      "何海波：《判决书上网》，载《法制日报》2000年5月21日，第2版。"
+    ]
+  },
+  {
+    "title": "法学引注手册（第二版，多语言，重复引用不省略，标注页码）",
+    "source_dir": "法学引注手册（第二版，多语言，重复引用不省略，标注页码）",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/法学引注手册（第二版，多语言，重复引用不省略，标注页码）",
+    "examples": [
+      "王名扬：《美国行政法》，中国法制出版社1995年版，第18页。",
+      "张新宝：《侵权责任法》（第5版），中国人民大学出版社2020年版，第73-75页。",
+      "高鸿钧、程汉大主编：《英美法原论》，北京大学出版社2013年版，第三章“英美判例法”。",
+      "［美］富勒：《法律的道德性》，郑戈译，商务印书馆2005年版。",
+      "季卫东：《法律程序的意义——对中国法制建设的另一种思考》，载《中国社会科学》1993年第1期，第91页。",
+      "王保树：《股份有限公司机关构造中的董事和董事会》，载梁慧星主编：《民商法论丛》第1卷，法律出版社1994年版，第110页。",
+      "［德］莱纳·沃尔夫：《风险法的风险》，陈霄、刘刚译，载刘刚主编：《风险规制：德国的理论与实践》，法律出版社2012年版。",
+      "何海波：《判决书上网》，载《法制日报》2000年5月21日，第2版。"
+    ]
+  },
+  {
+    "title": "湖南大学（脚注）",
+    "source_dir": "湖南大学（脚注）",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/湖南大学（脚注）",
+    "examples": [
+      "张直明，张言，陈北熊．滑动轴承的流体动力润滑理论．北京：高等教育出版社，1986，104-105",
+      "Mitchell A L. Introduction to genetic algorithms. Cambridge: MIT Press, 1996, 35-40",
+      "李斌，沙键，张其瑞，陈斌．介观耦合电路的量子压缩效应．科学通报，1996，41(14)：1275-1277",
+      "Chen D H, Bogy D B, Wang K C, Geng X. Singular stress field  near the comer of jointed dissimilar materials. Journal of  Applied Mechanics, 1993, 60(3): 607-613",
+      "张筑生．微分半动力系统的不变集：［北京大学硕士学位论文］．北京：北京大学数学系数学研究所，1995，60-65",
+      "Cairns B R. Infrared spectroscopic studies of solid oxygen: [dissertation]. Berkeley: Univ. of California, 1965, 89-91",
+      "田荣．连续与非连续变形分析的流形方法及其在土力学中的应用．见：中国土木工程学会第八届全国土力学及岩土工程学术会议论文集．北京：万国学术出版社，1999，51-53",
+      "Melbourne C. Load relieving systems. In: Proc of Int Conf on  Non conventional Structures. London, 1987, 93-95"
+    ]
+  },
+  {
+    "title": "社会科学",
+    "source_dir": "社会科学",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/社会科学",
+    "examples": [
+      "吴晓明：《构建中国特色哲学社会科学的时代任务》，《社会科学》2022年第5期。",
+      "本尼迪柯特·安德森：《想象的共同体：民族主义的起源与散布》，吴叡人译，上海：上海人民出版社2011年，第150页。",
+      "洛克：《政府论》下，叶启芳、瞿菊农译，北京：商务印书馆1996年，第36页。",
+      "洛克：《政府论》下，第348页。",
+      "Stephen V. Ward, Selling Place: The Marketing and Promotion of Towns and Cities, 1850-2000, New York and London: Routledge Publish Press, 1998, p.92.",
+      "Gary Jefferson, Thomas Rawski, \"Enterprise Reform in China’s Industry,\" Journal of Economic Perspectives, Vol.4, No.2, 1994, pp.47-70."
+    ]
+  },
+  {
+    "title": "臺大中文學報",
+    "source_dir": "臺大中文學報",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/臺大中文學報",
+    "examples": [
+      "王夢鷗：《禮記校證》（臺北：藝文印書館，1976年12月），頁102。",
+      "徐信義：〈張炎的詞學批評〉，《幼獅學誌》第14期（1977年2月），頁172-194。",
+      "余英時：〈清代思想史的一個新解釋〉，《歷史與思想》（臺北：聯經出版事業公司，1976年9月），頁121-156。",
+      "林文月：〈八十自述〉，收錄於臺灣大學中國文學系主編：《林文月先生學術成就與薪傳國際學術研討會》（臺北：臺灣大學中國文學系，2014年5月），頁1-16。",
+      "孔仲溫：《類篇研究》（臺北：政治大學中國文學研究所博士論文，1985年，○○○先生指導），頁466。",
+      "宋‧司馬光：《資治通鑑》（南宋鄂州覆北宋刊龍爪本，約西元 12 世紀年），卷2，頁2 上。",
+      "明‧郝敬：《尚書辨解》（臺北：藝文印書館，1969年，百部叢書集成影印湖北叢書本），卷3，頁2 上。",
+      "丁邦新：〈國內漢學研究的方向和問題〉，《中央日報》第22版（1988年4月2日）。"
+    ]
+  },
+  {
+    "title": "西南政法大学",
+    "source_dir": "西南政法大学",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/西南政法大学",
+    "examples": [
+      "王名扬：《美国行政法》，北京大学出版社，2007年版。",
+      "同上注，第18页。",
+      "季卫东：“法律程序的意义：对中国法制建设的另一种思考”，《中国社会科学》，1993年第1期。",
+      "王保树：“股份有限公司机关构造中的董事和董事会”，梁慧星主编：《民商法论丛》第1卷，法律出版社，1994年版。",
+      "何海波：“判决书上网”，《法制日报》2000年5月21日，第2版。",
+      "李松锋：“游走在上帝与凯撒之间：美国宪法第一修正案中的政教关系研究”，中国政法大学博士学位论文，2015年。",
+      "包郑照诉苍南县人民政府强制拆除房屋案，浙江省高级人民法院民事判决书（1988）浙法民上字 7 号。",
+      "陆红霞诉南通市发改委政府信息公开案，《最高人民法院公报》2015年7月6日第11期。"
+    ]
+  },
+  {
+    "title": "马克思主义研究",
+    "source_dir": "马克思主义研究",
+    "source_url": "https://github.com/zotero-chinese/styles/tree/main/src/马克思主义研究",
+    "examples": [
+      "《马克思恩格斯选集》第2卷，北京：人民出版社，1995年，第22、178页。",
+      "逄先知、金冲及主编：《毛泽东传》，2003年，第1032页。",
+      "[德]黑格尔：《逻辑学》（上），杨一之译，商务印书馆，2001年，第427-428页。",
+      "任平：《马克思“反思的问题视域”及其当代意义》，《中国社会科学》2006年第6期。"
+    ]
   }
 ]
