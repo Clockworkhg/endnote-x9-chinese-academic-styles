@@ -7,6 +7,7 @@ from ens_tool import ENSParser, walk
 
 
 ROOT = Path("app")
+EXPECTED_STYLE_COUNT = 47
 
 
 def child(node, tag):
@@ -15,9 +16,24 @@ def child(node, tag):
 
 def test_manifest_and_style_count():
     manifest = json.loads((ROOT / "style-manifest.json").read_text(encoding="utf-8"))
-    assert len(manifest) == 18
-    assert len(list((ROOT / "Styles").glob("*.ens"))) == 18
-    assert len({item["sha256"] for item in manifest}) == 18
+    assert len(manifest) == EXPECTED_STYLE_COUNT
+    assert len(list((ROOT / "Styles").glob("*.ens"))) == EXPECTED_STYLE_COUNT
+    assert len({item["sha256"] for item in manifest}) == EXPECTED_STYLE_COUNT
+    assert [item["number"] for item in manifest] == list(range(1, EXPECTED_STYLE_COUNT + 1))
+    assert all(item["examples"] for item in manifest)
+
+
+def test_library_covers_every_pinned_upstream_note_style():
+    manifest = json.loads((ROOT / "style-manifest.json").read_text(encoding="utf-8"))
+    snapshot = json.loads(
+        Path("assets/upstream-note-styles.json").read_text(encoding="utf-8")
+    )
+    assert snapshot["class"] == "note"
+    assert snapshot["count"] == 46
+    assert set(snapshot["source_dirs"]).issubset(
+        {item["source_dir"] for item in manifest}
+    )
+    assert any(item["family"] == "cuc" for item in manifest)
 
 
 def test_every_style_parses_and_disables_bibliography():
@@ -75,4 +91,4 @@ def test_package_support_files_are_complete():
         assert workbook.testzip() is None
         assert "xl/workbook.xml" in workbook.namelist()
     html = (ROOT / "格式选择中心.html").read_text(encoding="utf-8")
-    assert len(re.findall(r'class="card"', html)) == 18
+    assert len(re.findall(r'class="card"', html)) == EXPECTED_STYLE_COUNT

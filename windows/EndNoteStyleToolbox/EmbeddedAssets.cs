@@ -16,9 +16,19 @@ internal static class EmbeddedAssets
             PropertyNameCaseInsensitive = true
         }) ?? throw new InvalidDataException("内置样式清单为空。");
 
-        if (styles.Count != 18)
+        if (styles.Count == 0)
         {
-            throw new InvalidDataException($"内置样式数量应为18，实际为{styles.Count}。");
+            throw new InvalidDataException("内置样式清单不应为空。");
+        }
+
+        if (!styles.Select(style => style.Number).SequenceEqual(Enumerable.Range(1, styles.Count)))
+        {
+            throw new InvalidDataException("内置样式序号必须从1开始连续排列。");
+        }
+
+        if (styles.Select(style => style.Filename).Distinct(StringComparer.OrdinalIgnoreCase).Count() != styles.Count)
+        {
+            throw new InvalidDataException("内置样式清单含有重复文件名。");
         }
 
         foreach (var style in styles)

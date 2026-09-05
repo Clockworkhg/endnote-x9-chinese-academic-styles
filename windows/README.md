@@ -1,6 +1,6 @@
 # Windows EXE
 
-`EndNoteStyleToolbox`是工具箱的正式图形客户端，基于 .NET 8 WinForms。它不启动 PowerShell 或 CMD，运行所需的18套样式与配套资料均作为程序集资源嵌入。
+`EndNoteStyleToolbox`是工具箱的正式图形客户端，基于 .NET 8 WinForms。它不启动 PowerShell 或 CMD，运行所需的47套样式与配套资料均作为程序集资源嵌入。
 
 发布：
 

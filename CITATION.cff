@@ -5,7 +5,7 @@ type: software
 authors:
   - name: Clockworkhg
     email: hershelgao@gmail.com
-version: 0.3.0
+version: 0.4.0
 date-released: 2026-09-04
 license:
   - MIT
