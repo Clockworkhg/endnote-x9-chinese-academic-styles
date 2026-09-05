@@ -2,7 +2,7 @@ namespace EndNoteStyleToolbox;
 
 internal sealed class DirectoryDialog : Form
 {
-    private readonly ComboBox _paths = new() { Dock = DockStyle.Top, DropDownStyle = ComboBoxStyle.DropDown, Height = 36 };
+    private readonly ComboBox _paths = new() { Dock = DockStyle.Top, DropDownStyle = ComboBoxStyle.DropDown, DisplayMember = nameof(DirectoryCandidate.Path), Height = 36 };
     private readonly Label _status = new() { Dock = DockStyle.Fill, Padding = new Padding(0, 18, 0, 0) };
     private readonly CheckBox _confirmed = new() { Text = "我已核对：这与 EndNote 的 Styles Folder 设置一致", AutoSize = true };
     public string SelectedDirectory { get; private set; } = "";
@@ -12,8 +12,8 @@ internal sealed class DirectoryDialog : Form
     {
         Text = "样式安装位置";
         Font = new Font("Microsoft YaHei UI", 10);
-        ClientSize = new Size(760, 330);
-        MinimumSize = new Size(650, 360);
+        ClientSize = new Size(760, 280);
+        MinimumSize = new Size(740, 320);
         StartPosition = FormStartPosition.CenterParent;
         var root = new TableLayoutPanel { Dock = DockStyle.Fill, Padding = new Padding(20), RowCount = 5, ColumnCount = 1 };
         root.RowStyles.Add(new RowStyle(SizeType.Absolute, 55));
@@ -48,12 +48,18 @@ internal sealed class DirectoryDialog : Form
         });
         root.Controls.Add(actions, 0, 4);
         Controls.Add(root);
-        _paths.TextChanged += (_, _) => { _confirmed.Checked = false; _status.Text = "尚未确认 EndNote 是否读取此位置。"; };
+        _paths.TextChanged += (_, _) => { _confirmed.Checked = false; _status.Text = "手动指定位置。\n尚未确认 EndNote 是否读取此位置。"; };
+        _paths.SelectionChangeCommitted += (_, _) =>
+        {
+            _confirmed.Checked = false;
+            if (_paths.SelectedItem is DirectoryCandidate candidate)
+                _status.Text = $"来源：{candidate.Source}\n请与 EndNote 的 Styles Folder 核对。";
+        };
         _paths.Text = settings.StyleDirectory ?? StyleDirectoryService.DefaultDirectory;
         _confirmed.Checked = settings.DirectoryConfirmed;
     }
 
-    private string CurrentPath() => _paths.SelectedItem is DirectoryCandidate candidate ? candidate.Path : _paths.Text.Trim();
+    private string CurrentPath() => _paths.Text.Trim();
     private void Scan()
     {
         var previous = CurrentPath();

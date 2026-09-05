@@ -22,12 +22,22 @@ internal static class SelfTestRunner
                 form.Show();
                 Application.DoEvents();
                 Require(form.Visible, "Main window is shown and processes UI events.", checks);
+                Require(Descendants(form).OfType<Button>().Count(b => b.Text == "使用帮助") == 1 &&
+                    !Descendants(form).OfType<Button>().Any(b => b.Text == "测试与帮助"), "Main window has exactly one help entry.", checks);
                 form.Close();
             }
             using (var dialog = new DirectoryDialog(new AppSettings()))
             {
                 dialog.Show(); Application.DoEvents();
                 Require(dialog.Visible, "Directory dialog renders.", checks);
+                var picker = Descendants(dialog).OfType<ComboBox>().Single();
+                var candidatePath = Path.Combine(temporaryRoot, "Styles");
+                picker.Items.Add(new DirectoryCandidate(candidatePath, "来源说明不能进入路径"));
+                picker.SelectedIndex = 0;
+                Application.DoEvents();
+                Require(picker.Text == candidatePath, "Directory picker displays a clean path without source annotation.", checks);
+                picker.Text = candidatePath + "-manual";
+                Require(picker.Text == candidatePath + "-manual", "Directory candidate remains manually editable.", checks);
                 dialog.Close();
             }
             using (var dialog = new UpdateDialog())
@@ -145,6 +155,15 @@ internal static class SelfTestRunner
             throw new InvalidOperationException("Self-test failed: " + message);
         }
         checks.Add(message);
+    }
+
+    private static IEnumerable<Control> Descendants(Control parent)
+    {
+        foreach (Control child in parent.Controls)
+        {
+            yield return child;
+            foreach (var descendant in Descendants(child)) yield return descendant;
+        }
     }
 
     private static void WriteReport(string? path, object report)

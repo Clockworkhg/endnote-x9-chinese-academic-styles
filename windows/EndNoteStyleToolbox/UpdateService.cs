@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using System.Net.Http;
+using System.Net;
 using System.Security.Cryptography;
 using System.Text.Json;
 
@@ -7,12 +8,17 @@ namespace EndNoteStyleToolbox;
 
 internal sealed record UpdateRelease(Version Version, string DownloadUrl, string ChecksumUrl, string Notes);
 internal sealed record UpdatePlan(string Target, string Sha256, int ParentId, string HealthFile);
+internal sealed class UpdateRateLimitException(DateTimeOffset retryAt) : IOException("GitHub 暂时限制了更新请求，请稍后重试。")
+{
+    public DateTimeOffset RetryAt { get; } = retryAt;
+}
 
 internal static class UpdateService
 {
     public const string Repository = "Clockworkhg/endnote-x9-chinese-academic-styles";
     public static Version CurrentVersion => new(0, 5, 0);
     private const string Filename = "EndNoteStyleToolbox.exe";
+    public static DateTimeOffset NextCheckAllowedAt { get; private set; } = DateTimeOffset.MinValue;
     private static HttpClient Client()
     {
         var client = new HttpClient { Timeout = TimeSpan.FromMinutes(5) };
@@ -22,8 +28,31 @@ internal static class UpdateService
 
     public static async Task<UpdateRelease?> CheckAsync(CancellationToken token, HttpClient? testClient = null)
     {
+        if (testClient == null && DateTimeOffset.UtcNow < NextCheckAllowedAt)
+            throw new UpdateRateLimitException(NextCheckAllowedAt);
         using var client = testClient ?? Client();
         using var response = await client.GetAsync($"https://api.github.com/repos/{Repository}/releases/latest", token);
+        if (response.StatusCode is HttpStatusCode.Forbidden or HttpStatusCode.TooManyRequests)
+        {
+            var body = await response.Content.ReadAsStringAsync(token);
+            var exhausted = response.Headers.TryGetValues("X-RateLimit-Remaining", out var remaining) && remaining.Contains("0");
+            if (response.StatusCode == HttpStatusCode.TooManyRequests || exhausted ||
+                body.Contains("rate limit", StringComparison.OrdinalIgnoreCase) ||
+                response.ReasonPhrase?.Contains("rate limit", StringComparison.OrdinalIgnoreCase) == true)
+            {
+                var retryAt = DateTimeOffset.UtcNow.AddMinutes(1);
+                if (response.Headers.RetryAfter?.Date is DateTimeOffset date && date > retryAt) retryAt = date;
+                if (response.Headers.RetryAfter?.Delta is TimeSpan delta && DateTimeOffset.UtcNow.Add(delta) > retryAt)
+                    retryAt = DateTimeOffset.UtcNow.Add(delta);
+                if (response.Headers.TryGetValues("X-RateLimit-Reset", out var resets) && long.TryParse(resets.FirstOrDefault(), out var seconds))
+                {
+                    try { var reset = DateTimeOffset.FromUnixTimeSeconds(seconds); if (reset > retryAt) retryAt = reset; }
+                    catch (ArgumentOutOfRangeException) { }
+                }
+                if (testClient == null) NextCheckAllowedAt = retryAt;
+                throw new UpdateRateLimitException(retryAt);
+            }
+        }
         response.EnsureSuccessStatusCode();
         using var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync(token));
         var root = json.RootElement;

@@ -83,7 +83,7 @@ internal sealed class MainForm : Form
         Navigate("安装位置", ConfigureDirectory);
         Navigate("备份与恢复", OpenBackups);
         Navigate("更新中心", () => { using var dialog = new UpdateDialog(); dialog.ShowDialog(this); });
-        Navigate("测试与帮助", ShowHelp);
+        Navigate("使用帮助", ShowHelp);
         shell.Controls.Add(navigation, 0, 0);
         shell.Controls.Add(root, 1, 0);
         Controls.Add(shell);
@@ -346,7 +346,7 @@ internal sealed class MainForm : Form
         var panel = new TableLayoutPanel
         {
             Dock = DockStyle.Fill,
-            ColumnCount = 7,
+            ColumnCount = 6,
             Padding = new Padding(0, 10, 0, 0)
         };
         panel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 126));
@@ -355,7 +355,6 @@ internal sealed class MainForm : Form
         panel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 112));
         panel.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100));
         panel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 132));
-        panel.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 88));
 
         _installButton.Text = "安装所选格式";
         StyleButton(_installButton, secondary: false);
@@ -379,9 +378,6 @@ internal sealed class MainForm : Form
         exportButton.Click += (_, _) => ExportSupportFiles();
         panel.Controls.Add(exportButton, 5, 0);
 
-        var helpButton = NewButton("使用帮助", secondary: true);
-        helpButton.Click += (_, _) => ShowHelp();
-        panel.Controls.Add(helpButton, 6, 0);
         return panel;
     }
 

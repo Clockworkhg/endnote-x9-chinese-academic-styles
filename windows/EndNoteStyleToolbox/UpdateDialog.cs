@@ -1,3 +1,7 @@
+using System.Diagnostics;
+using System.Net;
+using System.Net.Http;
+
 namespace EndNoteStyleToolbox;
 
 internal sealed class UpdateDialog : Form
@@ -6,7 +10,9 @@ internal sealed class UpdateDialog : Form
     private readonly Label _status = new() { AutoSize = true, Text = "尚未检查更新。" };
     private readonly Button _check = new() { Text = "检查更新", AutoSize = true };
     private readonly Button _download = new() { Text = "下载更新", AutoSize = true, Enabled = false };
-    private readonly CancellationTokenSource _cancel = new();
+    private CancellationTokenSource _cancel = new();
+    private readonly Button _cancelButton = new() { Text = "取消操作", AutoSize = true, Enabled = false };
+    private readonly System.Windows.Forms.Timer _cooldown = new() { Interval = 1000 };
     private UpdateRelease? _release;
     private string? _staging;
     private bool _busy;
@@ -28,13 +34,22 @@ internal sealed class UpdateDialog : Form
         var buttons = new FlowLayoutPanel { Dock = DockStyle.Fill };
         buttons.Controls.Add(_check);
         buttons.Controls.Add(_download);
-        var cancel = new Button { Text = "取消下载", AutoSize = true };
-        cancel.Click += (_, _) => _cancel.Cancel();
-        buttons.Controls.Add(cancel);
+        _cancelButton.Click += (_, _) => _cancel.Cancel();
+        buttons.Controls.Add(_cancelButton);
+        var releases = new Button { Text = "打开发布页", AutoSize = true };
+        releases.Click += (_, _) =>
+        {
+            try { Process.Start(new ProcessStartInfo($"https://github.com/{UpdateService.Repository}/releases") { UseShellExecute = true }); }
+            catch (Exception ex) { _status.Text = "无法打开浏览器，请稍后重试。"; Diagnostics.WriteCrashLog(ex); }
+        };
+        buttons.Controls.Add(releases);
         root.Controls.Add(buttons, 0, 3);
         Controls.Add(root);
         _check.Click += async (_, _) => await Run(async () =>
         {
+            _release = null;
+            _staging = null;
+            _download.Text = "下载更新";
             _status.Text = "正在检查 GitHub 正式发布…";
             _release = await UpdateService.CheckAsync(_cancel.Token);
             _status.Text = _release == null ? "目前没有更新的正式版。" : $"发现 v{_release.Version}";
@@ -53,21 +68,49 @@ internal sealed class UpdateDialog : Form
             else _download.Text = "安装并重启";
         });
         FormClosing += (_, e) => { if (_busy) { _cancel.Cancel(); e.Cancel = true; _status.Text = "正在取消，请稍后关闭。"; } };
-        FormClosed += (_, _) => _cancel.Dispose();
+        _cooldown.Tick += (_, _) => RefreshCheckButton();
+        _cooldown.Start();
+        RefreshCheckButton();
+        FormClosed += (_, _) => { _cooldown.Dispose(); _cancel.Dispose(); };
     }
 
     private async Task Run(Func<Task> action)
     {
         if (_busy) return;
+        if (_cancel.IsCancellationRequested) { _cancel.Dispose(); _cancel = new CancellationTokenSource(); }
         _busy = true;
+        _cancelButton.Enabled = true;
         _check.Enabled = _download.Enabled = false;
         try { await action(); }
-        catch (OperationCanceledException) { _status.Text = "操作已取消；旧版未改变。关闭并重新打开更新窗口可重试。"; }
-        catch (Exception ex) { _status.Text = "操作未完成；旧版未改变。"; _notes.Text = ex.Message + "\r\n\r\n网络不可用时仍可正常使用本地格式库。"; Diagnostics.WriteCrashLog(ex); }
+        catch (UpdateRateLimitException ex)
+        {
+            _status.Text = "更新服务暂时限流，未能检查最新版本。";
+            _notes.Text = $"GitHub 暂时限制了当前网络的更新请求。\r\n建议在 {ex.RetryAt.ToLocalTime():HH:mm:ss} 后重试。\r\n\r\n不需要重新授权 GitHub，也不影响安装和使用本地样式。\r\n你也可以点击“打开发布页”手动查看版本。";
+        }
+        catch (OperationCanceledException) { _status.Text = _cancel.IsCancellationRequested ? "操作已取消；可重新尝试，旧版未改变。" : "连接超时，请稍后重试；旧版未改变。"; }
+        catch (Exception ex) { _status.Text = "操作未完成；旧版未改变。"; _notes.Text = DescribeFailure(ex) + "\r\n\r\n仍可正常使用本地格式库。详细原因已记录到诊断日志。"; Diagnostics.WriteCrashLog(ex); }
         finally
         {
             _busy = false;
-            if (!IsDisposed) { _check.Enabled = !_cancel.IsCancellationRequested; _download.Enabled = _release != null && !_cancel.IsCancellationRequested; }
+            if (!IsDisposed) { _cancelButton.Enabled = false; RefreshCheckButton(); _download.Enabled = _release != null; }
         }
     }
+
+    private void RefreshCheckButton()
+    {
+        var remaining = UpdateService.NextCheckAllowedAt - DateTimeOffset.UtcNow;
+        _check.Enabled = !_busy && remaining <= TimeSpan.Zero;
+        _check.Text = remaining > TimeSpan.Zero ? $"等待 {Math.Ceiling(remaining.TotalMinutes)} 分钟" : "检查更新";
+    }
+
+    internal static string DescribeFailure(Exception ex) => ex switch
+    {
+        HttpRequestException { StatusCode: HttpStatusCode.Forbidden } => "GitHub 拒绝了本次更新请求（403）。可稍后重试或打开发布页查看。",
+        HttpRequestException { StatusCode: HttpStatusCode.NotFound } => "暂时找不到对应的发布信息或下载文件（404）。请打开发布页核对。",
+        HttpRequestException => "无法连接 GitHub 更新服务，请检查网络后重试，或打开发布页查看。",
+        UnauthorizedAccessException => "程序所在文件夹不可写，请将工具箱放到自己可写的文件夹后重试。",
+        InvalidDataException => ex.Message,
+        IOException => "无法读写更新文件，请检查文件夹权限、磁盘空间或文件是否被占用。",
+        _ => "更新信息暂时无法处理，请稍后重试或打开发布页查看。"
+    };
 }

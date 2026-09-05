@@ -61,6 +61,25 @@ internal static class UpdateSelfTestRunner
         catch (InvalidDataException) { rejected = true; }
         if (!rejected) throw new IOException("Corrupted download was accepted.");
         checks.Add("Downloaded payload with mismatched checksum is rejected.");
+        foreach (var status in new[] { HttpStatusCode.Forbidden, HttpStatusCode.TooManyRequests })
+        {
+            var reset = DateTimeOffset.UtcNow.AddMinutes(3).ToUnixTimeSeconds();
+            using var limited = new HttpClient(new FixtureHandler(_ =>
+            {
+                var response = new HttpResponseMessage(status) { Content = new StringContent("API rate limit exceeded") };
+                response.Headers.Add("X-RateLimit-Remaining", "0");
+                response.Headers.Add("X-RateLimit-Reset", reset.ToString());
+                return response;
+            }));
+            rejected = false;
+            try { await UpdateService.CheckAsync(CancellationToken.None, limited); }
+            catch (UpdateRateLimitException ex) { rejected = ex.RetryAt.ToUnixTimeSeconds() >= reset; }
+            if (!rejected) throw new IOException("Rate-limit response did not preserve retry time.");
+            checks.Add($"HTTP {(int)status} rate limit returns a Chinese error with server retry time.");
+        }
+        var forbidden = UpdateDialog.DescribeFailure(new HttpRequestException("English server error", null, HttpStatusCode.Forbidden));
+        if (!forbidden.Contains("403") || forbidden.Contains("English server error")) throw new IOException("Raw HTTP error leaked to the UI.");
+        checks.Add("Generic HTTP 403 is localized without being misreported as a rate limit.");
     }
 
     public static void Run(string root, ICollection<string> checks)
