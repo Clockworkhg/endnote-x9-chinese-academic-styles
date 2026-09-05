@@ -1,11 +1,52 @@
 using System.Diagnostics;
 using System.Security.Cryptography;
 using System.Text.Json;
+using System.Net;
+using System.Net.Http;
 
 namespace EndNoteStyleToolbox;
 
 internal static class UpdateSelfTestRunner
 {
+    private sealed class FixtureHandler(Func<HttpRequestMessage, HttpResponseMessage> respond) : HttpMessageHandler
+    {
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken token)
+        {
+            token.ThrowIfCancellationRequested();
+            return Task.FromResult(respond(request));
+        }
+    }
+
+    public static async Task NetworkAsync(ICollection<string> checks)
+    {
+        const string tag = "v99.0.0";
+        var url = $"https://github.com/{UpdateService.Repository}/releases/download/{tag}/EndNoteStyleToolbox.exe";
+        var fixture = JsonSerializer.Serialize(new { draft = false, prerelease = false, tag_name = tag, body = "Fixture release", assets = new[] {
+            new { name = "EndNoteStyleToolbox.exe", browser_download_url = url },
+            new { name = "EndNoteStyleToolbox.exe.sha256", browser_download_url = url + ".sha256" } } });
+        using var client = new HttpClient(new FixtureHandler(_ => new(HttpStatusCode.OK) { Content = new StringContent(fixture) }));
+        var release = await UpdateService.CheckAsync(CancellationToken.None, client);
+        if (release?.Version != new Version(99, 0, 0)) throw new IOException("Release parsing fixture failed.");
+        checks.Add("Update metadata parsing uses a deterministic HTTP fixture.");
+        using var offline = new HttpClient(new FixtureHandler(_ => throw new HttpRequestException("offline fixture")));
+        var rejected = false;
+        try { await UpdateService.CheckAsync(CancellationToken.None, offline); } catch (HttpRequestException) { rejected = true; }
+        if (!rejected) throw new IOException("Offline fixture was not reported.");
+        checks.Add("Offline check reports failure without starting replacement.");
+        using var cancelled = new CancellationTokenSource();
+        cancelled.Cancel();
+        using var cancelledClient = new HttpClient(new FixtureHandler(_ => throw new IOException("Cancelled request reached network.")));
+        rejected = false;
+        try { await UpdateService.CheckAsync(cancelled.Token, cancelledClient); } catch (OperationCanceledException) { rejected = true; }
+        if (!rejected) throw new IOException("Cancellation fixture failed.");
+        checks.Add("Cancelled update check performs no network request.");
+        using var invalid = new HttpClient(new FixtureHandler(_ => new(HttpStatusCode.OK) { Content = new StringContent(fixture.Replace(url, "https://example.invalid/payload.exe")) }));
+        rejected = false;
+        try { await UpdateService.CheckAsync(CancellationToken.None, invalid); } catch (InvalidDataException) { rejected = true; }
+        if (!rejected) throw new IOException("Foreign update URL was accepted.");
+        checks.Add("Foreign release asset URL is rejected.");
+    }
+
     public static void Run(string root, ICollection<string> checks)
     {
         var executable = Environment.ProcessPath!;

@@ -72,6 +72,7 @@ internal sealed class StyleService
 
     public OperationResult Uninstall(StyleInfo style)
     {
+        StyleDirectoryService.Validate(TargetDirectory);
         var target = TargetPath(style);
         if (!IsManaged(style)) return new OperationResult($"未卸载：{style.Title}。没有匹配的安装记录，或文件已被修改；已保留原文件。");
         if (!File.Exists(target))
@@ -86,6 +87,7 @@ internal sealed class StyleService
 
     public OperationResult UninstallAll(IEnumerable<StyleInfo> styles)
     {
+        StyleDirectoryService.Validate(TargetDirectory);
         var installed = styles.Where(IsManaged).ToArray();
         if (installed.Length == 0)
         {
@@ -108,10 +110,20 @@ internal sealed class StyleService
         {
             throw new InvalidDataException("样式文件名包含非法路径。");
         }
-        return Path.Combine(TargetDirectory, filename);
+        var path = Path.Combine(TargetDirectory, filename);
+        if (File.Exists(path) && (File.GetAttributes(path) & FileAttributes.ReparsePoint) != 0)
+            throw new IOException("目标样式是文件链接，已停止操作，请选择实际文件。");
+        return path;
     }
 
-    private string ReceiptPath(StyleInfo style) => Path.Combine(TargetDirectory, ".toolbox-receipts", Path.GetFileName(style.Filename) + ".sha256");
+    private string ReceiptPath(StyleInfo style)
+    {
+        var directory = StyleDirectoryService.Validate(Path.Combine(TargetDirectory, ".toolbox-receipts"));
+        var path = Path.Combine(directory, Path.GetFileName(style.Filename) + ".sha256");
+        if (File.Exists(path) && (File.GetAttributes(path) & FileAttributes.ReparsePoint) != 0)
+            throw new IOException("安装记录是文件链接，已停止操作。");
+        return path;
+    }
 
     private void MarkManaged(StyleInfo style)
     {
@@ -151,7 +163,7 @@ internal sealed class StyleService
     private string CreateBackupDirectory(string prefix)
     {
         Directory.CreateDirectory(TargetDirectory);
-        var path = Path.Combine(TargetDirectory, prefix + DateTime.Now.ToString("yyyyMMdd-HHmmss-fff"));
+        var path = Path.Combine(TargetDirectory, prefix + DateTime.Now.ToString("yyyyMMdd-HHmmss-fff") + "-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(path);
         return path;
     }

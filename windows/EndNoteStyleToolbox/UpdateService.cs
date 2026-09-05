@@ -20,9 +20,9 @@ internal static class UpdateService
         return client;
     }
 
-    public static async Task<UpdateRelease?> CheckAsync(CancellationToken token)
+    public static async Task<UpdateRelease?> CheckAsync(CancellationToken token, HttpClient? testClient = null)
     {
-        using var client = Client();
+        using var client = testClient ?? Client();
         using var response = await client.GetAsync($"https://api.github.com/repos/{Repository}/releases/latest", token);
         response.EnsureSuccessStatusCode();
         using var json = JsonDocument.Parse(await response.Content.ReadAsStringAsync(token));
@@ -49,14 +49,14 @@ internal static class UpdateService
         return CryptographicOperations.FixedTimeEquals(SHA256.HashData(stream), Convert.FromHexString(expected));
     }
 
-    public static async Task<string> DownloadAsync(UpdateRelease release, IProgress<string> progress, CancellationToken token)
+    public static async Task<string> DownloadAsync(UpdateRelease release, IProgress<string> progress, CancellationToken token, HttpClient? testClient = null)
     {
         var target = Environment.ProcessPath ?? throw new IOException("无法确定程序所在位置。");
         if (!Path.GetFileName(target).Equals(Filename, StringComparison.OrdinalIgnoreCase))
             throw new IOException($"自动更新要求程序文件名为 {Filename}。请恢复该名称，或从发布页手动更新。");
         var staging = Path.Combine(Path.GetDirectoryName(target)!, ".toolbox-update-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(staging);
-        using var client = Client();
+        using var client = testClient ?? Client();
         var checksumText = await client.GetStringAsync(release.ChecksumUrl, token);
         var parts = checksumText.Trim().Split((char[]?)null, StringSplitOptions.RemoveEmptyEntries);
         if (parts.Length != 2 || parts[1] != Filename || parts[0].Length != 64 || !parts[0].All(Uri.IsHexDigit))
