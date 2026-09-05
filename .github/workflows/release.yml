@@ -56,10 +56,10 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: >-
-          gh release create "v0.3.0"
+          gh release create "v0.4.0"
           "artifacts/win-x64/EndNoteStyleToolbox.exe"
           "artifacts/win-x64/EndNoteStyleToolbox.exe.sha256"
           "artifacts/self-test.json"
           --target "${{ github.sha }}"
-          --title "EndNote中文学术格式工具箱 v0.3.0"
-          --notes-file RELEASE_NOTES_0.3.0.md
+          --title "EndNote中文学术格式工具箱 v0.4.0"
+          --notes-file RELEASE_NOTES_0.4.0.md

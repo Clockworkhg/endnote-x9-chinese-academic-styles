@@ -48,7 +48,7 @@ jobs:
           if ($result.status -ne "passed") {
             throw "EXE self-test did not report passed."
           }
-          if ($result.checks.Count -lt 28) {
+          if ($result.checks.Count -lt 55) {
             throw "EXE self-test executed too few checks: $($result.checks.Count)"
           }
 
