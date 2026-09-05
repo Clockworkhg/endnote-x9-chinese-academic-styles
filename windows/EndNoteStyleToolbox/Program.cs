@@ -5,6 +5,10 @@ internal static class Program
     [STAThread]
     private static int Main(string[] args)
     {
+        if (args.Length == 2 && args[0] == "--update-health" &&
+            Environment.GetEnvironmentVariable("ENDNOTE_TOOLBOX_UPDATE_TEST") == "1" &&
+            Environment.GetEnvironmentVariable("ENDNOTE_TOOLBOX_FAIL_HEALTH_TEST") == "1") return 2;
+        if (args.Length == 2 && args[0] == "--apply-update") return UpdateService.Apply(args[1]);
         if (args.Length > 0 && args[0].Equals("--self-test", StringComparison.OrdinalIgnoreCase))
         {
             var reportPath = args.Length > 1 ? args[1] : null;
@@ -14,7 +18,22 @@ internal static class Program
         try
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+            using var form = new MainForm();
+            if (args.Length == 2 && args[0] == "--update-health")
+            {
+                var marker = Path.GetFullPath(args[1]);
+                var parent = Directory.GetParent(marker);
+                if (Path.GetFileName(marker) != "healthy" || parent == null ||
+                    !parent.Name.StartsWith(".toolbox-update-", StringComparison.Ordinal) ||
+                    !string.Equals(parent.Parent?.FullName, Path.GetDirectoryName(Environment.ProcessPath), StringComparison.OrdinalIgnoreCase))
+                    throw new IOException("启动检查路径无效。");
+                form.Shown += (_, _) => form.BeginInvoke(new Action(() =>
+                {
+                    File.WriteAllText(marker, "ready");
+                    if (Environment.GetEnvironmentVariable("ENDNOTE_TOOLBOX_UPDATE_TEST") == "1") form.Close();
+                }));
+            }
+            Application.Run(form);
             return 0;
         }
         catch (Exception exception)

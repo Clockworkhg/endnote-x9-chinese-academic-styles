@@ -6,7 +6,7 @@ internal sealed class StyleService
 {
     public StyleService(string? targetDirectory = null)
     {
-        TargetDirectory = targetDirectory ?? GetDefaultTargetDirectory();
+        TargetDirectory = StyleDirectoryService.Validate(targetDirectory ?? StyleDirectoryService.DefaultDirectory);
     }
 
     public string TargetDirectory { get; }
@@ -29,7 +29,7 @@ internal sealed class StyleService
 
     public OperationResult Install(StyleInfo style)
     {
-        Directory.CreateDirectory(TargetDirectory);
+        StyleDirectoryService.CheckWritable(TargetDirectory);
         var target = TargetPath(style);
         string? backupDirectory = null;
 
@@ -40,6 +40,7 @@ internal sealed class StyleService
         }
 
         WriteStyle(style, target);
+        MarkManaged(style);
 
         return new OperationResult($"已安装：{style.Title}", backupDirectory);
     }
@@ -47,7 +48,7 @@ internal sealed class StyleService
     public OperationResult InstallAll(IEnumerable<StyleInfo> styles)
     {
         var requested = styles.ToArray();
-        Directory.CreateDirectory(TargetDirectory);
+        StyleDirectoryService.CheckWritable(TargetDirectory);
         var existing = requested.Where(style => File.Exists(TargetPath(style))).ToArray();
         string? backupDirectory = null;
         if (existing.Length > 0)
@@ -62,6 +63,7 @@ internal sealed class StyleService
         foreach (var style in requested)
         {
             WriteStyle(style, TargetPath(style));
+            MarkManaged(style);
         }
 
         var suffix = backupDirectory is not null ? "；原文件已备份" : string.Empty;
@@ -70,7 +72,9 @@ internal sealed class StyleService
 
     public OperationResult Uninstall(StyleInfo style)
     {
+        StyleDirectoryService.Validate(TargetDirectory);
         var target = TargetPath(style);
+        if (!IsManaged(style)) return new OperationResult($"未卸载：{style.Title}。没有匹配的安装记录，或文件已被修改；已保留原文件。");
         if (!File.Exists(target))
         {
             return new OperationResult($"尚未安装：{style.Title}");
@@ -83,7 +87,8 @@ internal sealed class StyleService
 
     public OperationResult UninstallAll(IEnumerable<StyleInfo> styles)
     {
-        var installed = styles.Where(style => File.Exists(TargetPath(style))).ToArray();
+        StyleDirectoryService.Validate(TargetDirectory);
+        var installed = styles.Where(IsManaged).ToArray();
         if (installed.Length == 0)
         {
             return new OperationResult("没有检测到由本工具箱管理的样式。");
@@ -105,7 +110,34 @@ internal sealed class StyleService
         {
             throw new InvalidDataException("样式文件名包含非法路径。");
         }
-        return Path.Combine(TargetDirectory, filename);
+        var path = Path.Combine(TargetDirectory, filename);
+        if (File.Exists(path) && (File.GetAttributes(path) & FileAttributes.ReparsePoint) != 0)
+            throw new IOException("目标样式是文件链接，已停止操作，请选择实际文件。");
+        return path;
+    }
+
+    private string ReceiptPath(StyleInfo style)
+    {
+        var directory = StyleDirectoryService.Validate(Path.Combine(TargetDirectory, ".toolbox-receipts"));
+        var path = Path.Combine(directory, Path.GetFileName(style.Filename) + ".sha256");
+        if (File.Exists(path) && (File.GetAttributes(path) & FileAttributes.ReparsePoint) != 0)
+            throw new IOException("安装记录是文件链接，已停止操作。");
+        return path;
+    }
+
+    private void MarkManaged(StyleInfo style)
+    {
+        Directory.CreateDirectory(Path.GetDirectoryName(ReceiptPath(style))!);
+        File.WriteAllText(ReceiptPath(style), style.Sha256);
+    }
+
+    private bool IsManaged(StyleInfo style)
+    {
+        var target = TargetPath(style);
+        var receipt = ReceiptPath(style);
+        if (!File.Exists(target) || !File.Exists(receipt)) return false;
+        using var stream = File.OpenRead(target);
+        return Convert.ToHexString(SHA256.HashData(stream)).Equals(File.ReadAllText(receipt).Trim(), StringComparison.OrdinalIgnoreCase);
     }
 
     private static void WriteStyle(StyleInfo style, string target)
@@ -113,7 +145,10 @@ internal sealed class StyleService
         var temporary = target + ".tmp-" + Guid.NewGuid().ToString("N");
         try
         {
-            File.WriteAllBytes(temporary, EmbeddedAssets.ReadStyle(style.Filename));
+            var bytes = EmbeddedAssets.ReadStyle(style.Filename);
+            if (!Convert.ToHexString(SHA256.HashData(bytes)).Equals(style.Sha256, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidDataException("内置样式校验失败，未覆盖目标文件。");
+            File.WriteAllBytes(temporary, bytes);
             File.Move(temporary, target, overwrite: true);
         }
         finally
@@ -128,20 +163,9 @@ internal sealed class StyleService
     private string CreateBackupDirectory(string prefix)
     {
         Directory.CreateDirectory(TargetDirectory);
-        var path = Path.Combine(TargetDirectory, prefix + DateTime.Now.ToString("yyyyMMdd-HHmmss-fff"));
+        var path = Path.Combine(TargetDirectory, prefix + DateTime.Now.ToString("yyyyMMdd-HHmmss-fff") + "-" + Guid.NewGuid().ToString("N"));
         Directory.CreateDirectory(path);
         return path;
     }
 
-    private static string GetDefaultTargetDirectory()
-    {
-        var documents = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-        if (string.IsNullOrWhiteSpace(documents))
-        {
-            documents = Path.Combine(
-                Environment.GetFolderPath(Environment.SpecialFolder.UserProfile),
-                "Documents");
-        }
-        return Path.Combine(documents, "EndNote", "Styles");
-    }
 }
