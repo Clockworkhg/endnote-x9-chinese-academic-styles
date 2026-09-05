@@ -97,6 +97,7 @@ internal static class SelfTestRunner
 
             var supportDirectory = EmbeddedAssets.ExportSupportFiles(Path.Combine(temporaryRoot, "Support"));
             Require(Directory.EnumerateFiles(supportDirectory).Count() == 4, "Support files export successfully.", checks);
+            UpdateSelfTestRunner.Run(temporaryRoot, checks);
 
             WriteReport(reportPath, new
             {

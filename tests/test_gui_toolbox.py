@@ -68,7 +68,12 @@ def test_native_gui_has_expected_actions_and_safe_target():
         "使用帮助",
     ]:
         assert token in form
-    assert '"EndNote", "Styles"' in service
+    directories = (PROJECT / "StyleDirectoryService.cs").read_text(encoding="utf-8")
+    assert '"EndNote", "Styles"' in directories
+    assert "SpecialFolder.MyDocuments" in directories
+    assert "StyleDirectoryService.Validate" in service
+    assert "StyleDirectoryService.CheckWritable" in service
+    assert "IsManaged" in service
     assert "Program Files" not in service
     assert "File.Delete(target)" not in service
     assert "File.Move(target" in service
@@ -98,7 +103,7 @@ def test_exe_does_not_launch_powershell_or_cmd():
     lowered = source.lower()
     assert "powershell" not in lowered
     assert "cmd.exe" not in lowered
-    assert "processstartinfo" in lowered  # Only opens a folder or HTTPS source link.
+    assert "processstartinfo" in lowered  # Native updater, folder and HTTPS source links.
 
 
 def test_windows_workflow_builds_and_launches_the_published_exe():

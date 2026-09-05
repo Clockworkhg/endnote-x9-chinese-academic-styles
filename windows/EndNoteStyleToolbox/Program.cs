@@ -24,7 +24,11 @@ internal static class Program
                     !parent.Name.StartsWith(".toolbox-update-", StringComparison.Ordinal) ||
                     !string.Equals(parent.Parent?.FullName, Path.GetDirectoryName(Environment.ProcessPath), StringComparison.OrdinalIgnoreCase))
                     throw new IOException("启动检查路径无效。");
-                form.Shown += (_, _) => form.BeginInvoke(new Action(() => File.WriteAllText(marker, "ready")));
+                form.Shown += (_, _) => form.BeginInvoke(new Action(() =>
+                {
+                    File.WriteAllText(marker, "ready");
+                    if (Environment.GetEnvironmentVariable("ENDNOTE_TOOLBOX_UPDATE_TEST") == "1") form.Close();
+                }));
             }
             Application.Run(form);
             return 0;

@@ -96,6 +96,7 @@ internal static class UpdateService
 
     public static int Apply(string planPath)
     {
+        var testing = Environment.GetEnvironmentVariable("ENDNOTE_TOOLBOX_UPDATE_TEST") == "1";
         string? backup = null;
         UpdatePlan? plan = null;
         Process? child = null;
@@ -138,15 +139,17 @@ internal static class UpdateService
                 if (replaced && plan != null && backup != null)
                 {
                     if (child != null && !child.HasExited) { child.Kill(); child.WaitForExit(5000); }
-                    File.Move(backup, plan.Target, true);
-                    Process.Start(new ProcessStartInfo(plan.Target) { UseShellExecute = true });
+                    var restore = backup + ".restore";
+                    File.Copy(backup, restore, false);
+                    File.Move(restore, plan.Target, true);
+                    if (!testing) Process.Start(new ProcessStartInfo(plan.Target) { UseShellExecute = true });
                     message += "\n已恢复并重新启动旧版。";
                 }
                 else message += "\n原程序未被替换。";
             }
             catch (Exception rollback) { message += $"\n自动恢复失败：{rollback.Message}\n旧版备份：{backup}"; }
             Diagnostics.WriteCrashLog(ex);
-            MessageBox.Show(message, "更新未完成", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            if (!testing) MessageBox.Show(message, "更新未完成", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             return 1;
         }
         finally { child?.Dispose(); }
