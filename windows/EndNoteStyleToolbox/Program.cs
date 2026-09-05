@@ -5,6 +5,9 @@ internal static class Program
     [STAThread]
     private static int Main(string[] args)
     {
+        if (args.Length == 2 && args[0] == "--update-health" &&
+            Environment.GetEnvironmentVariable("ENDNOTE_TOOLBOX_UPDATE_TEST") == "1" &&
+            Environment.GetEnvironmentVariable("ENDNOTE_TOOLBOX_FAIL_HEALTH_TEST") == "1") return 2;
         if (args.Length == 2 && args[0] == "--apply-update") return UpdateService.Apply(args[1]);
         if (args.Length > 0 && args[0].Equals("--self-test", StringComparison.OrdinalIgnoreCase))
         {

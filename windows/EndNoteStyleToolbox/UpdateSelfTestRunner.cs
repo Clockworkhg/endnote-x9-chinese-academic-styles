@@ -60,8 +60,7 @@ internal static class UpdateSelfTestRunner
             var helper = Path.Combine(staging, "updater.exe");
             File.Copy(executable, target);
             File.Copy(executable, helper);
-            if (scenario == "launch-failure") File.WriteAllText(source, "not a Windows executable");
-            else File.Copy(executable, source);
+            File.Copy(executable, source);
             string Hash(string path) { using var stream = File.OpenRead(path); return Convert.ToHexString(SHA256.HashData(stream)); }
             var originalHash = Hash(target);
             var hash = scenario == "hash-mismatch" ? new string('0', 64) : Hash(source);
@@ -72,6 +71,7 @@ internal static class UpdateSelfTestRunner
             start.ArgumentList.Add("--apply-update");
             start.ArgumentList.Add(planPath);
             start.Environment["ENDNOTE_TOOLBOX_UPDATE_TEST"] = "1";
+            if (scenario == "launch-failure") start.Environment["ENDNOTE_TOOLBOX_FAIL_HEALTH_TEST"] = "1";
             using var fileLock = scenario == "locked-target" ? new FileStream(target, FileMode.Open, FileAccess.Read, FileShare.Read) : null;
             using var process = Process.Start(start) ?? throw new IOException("Update test helper failed to start.");
             if (!process.WaitForExit(55000))

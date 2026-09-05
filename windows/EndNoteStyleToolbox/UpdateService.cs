@@ -49,6 +49,19 @@ internal static class UpdateService
         return CryptographicOperations.FixedTimeEquals(SHA256.HashData(stream), Convert.FromHexString(expected));
     }
 
+    private static void ValidateExecutable(string path)
+    {
+        using var input = File.OpenRead(path);
+        using var reader = new BinaryReader(input);
+        if (input.Length < 64 || reader.ReadUInt16() != 0x5a4d) throw new InvalidDataException("更新文件不是有效的 Windows EXE。");
+        input.Position = 0x3c;
+        var offset = reader.ReadInt32();
+        if (offset < 64 || offset > input.Length - 6) throw new InvalidDataException("更新文件的 PE 头无效。");
+        input.Position = offset;
+        if (reader.ReadUInt32() != 0x4550 || reader.ReadUInt16() != 0x8664)
+            throw new InvalidDataException("更新文件不是受支持的 64 位 Windows EXE。");
+    }
+
     public static async Task<string> DownloadAsync(UpdateRelease release, IProgress<string> progress, CancellationToken token, HttpClient? testClient = null)
     {
         var target = Environment.ProcessPath ?? throw new IOException("无法确定程序所在位置。");
@@ -79,6 +92,7 @@ internal static class UpdateService
             }
         }
         if (!MatchesHash(download, parts[0])) throw new InvalidDataException("更新文件 SHA-256 不匹配，未替换旧版。");
+        ValidateExecutable(download);
         File.Copy(target, Path.Combine(staging, "updater.exe"));
         var plan = new UpdatePlan(target, parts[0], Environment.ProcessId, Path.Combine(staging, "healthy"));
         File.WriteAllText(Path.Combine(staging, "plan.json"), JsonSerializer.Serialize(plan));
@@ -112,6 +126,7 @@ internal static class UpdateService
                 plan.HealthFile != Path.Combine(staging, "healthy")) throw new IOException("更新目标路径无效。");
             var source = Path.Combine(staging, "new.exe");
             if (!MatchesHash(source, plan.Sha256)) throw new IOException("更新前校验失败。");
+            ValidateExecutable(source);
             try
             {
                 using var parent = Process.GetProcessById(plan.ParentId);
